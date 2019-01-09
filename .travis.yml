@@ -8,4 +8,4 @@ php:
 install:
   - npm install
   - composer install --no-ansi --no-interaction --no-dev --optimize-autoloader --no-progress --no-scripts
-  - tree -L 3 .
+  - find .
