@@ -29,5 +29,4 @@ deploy:
   skip_cleanup: true
   on:
     repo: wpscholar/hello-world
-    branch: master
     tags: true
