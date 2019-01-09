@@ -2,6 +2,9 @@ dist: trusty
 
 language: php
 
+script:
+  - 
+
 before_deploy:
   - npm install
   - composer install --no-ansi --no-interaction --no-dev --optimize-autoloader --no-progress --no-scripts
