@@ -8,4 +8,13 @@ php:
 install:
   - npm install
   - composer install --no-ansi --no-interaction --no-dev --optimize-autoloader --no-progress --no-scripts
+
+script:
+  - rm -rf node_modules
+  - find . -name ".*" -type d -delete
+  - find . -name ".*" -type f -delete
+  - find . -name "*.json" -type f -delete
+  - find . -name "*.lock" -type f -delete
+
+after_script:
   - find .
