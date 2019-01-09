@@ -9,12 +9,20 @@ install:
   - npm install
   - composer install --no-ansi --no-interaction --no-dev --optimize-autoloader --no-progress --no-scripts
 
-script:
+before_deploy:
   - rm -rf node_modules
-  - find . -name ".*" -type d -delete
+  - rm -rf .git
   - find . -name ".*" -type f -delete
   - find . -name "*.json" -type f -delete
   - find . -name "*.lock" -type f -delete
 
-after_script:
-  - find .
+deploy:
+  provider: releases
+  api_key:
+    secure: ivYSJSeqs/vz17ykUvKiBrxZK5peyKoS6ZSqRl+VZB4SyerCkgeyqNY+a7tDatndtugmi3CYNws1M3UZSlDcuz7p2OnR+qfAmom5vPPrCsxZ7o+sstDdNcUHyAxA9WRh3uG6u8Bt2vRqjjzKzYh1EOkVCWsujAEeC/3Q5HtyB0YLf8fgezSEVKyEdAtZ7yygJVd/u5SJxKTvaX5J/NMTexBS/55GhMDcOsvHY3qior1WYfhqXNNj+gMxS6LfAjItXDCVb6ZVCPlwxs09PUlPM5VhsGil2XLvEO6ROQoL3IVMtMemIHd8pJVlLtDabOp7Yz648ZJRRb9X+WyJairYPWhTZfSlFnw57lxGd3tYliYdF5OBPrxX0fK91qxz/jUhiI/MjL6k0VTBNIKP9ukAxvAJzXTFgVTBO6IAuE8EC3S2rDyqP6lUHj7t2XhzvrX23zJOVxy5JmqIHDNCoODMI7BH9uoBkn3PdHZU2gEMGP9c58eko3oYJc/wtwU7dX+AanNOSkSd6W4ENylQLzasTJyYMiBXChxIYq3aReUTVI6zo1mHHOVFlj7hCdPwK3BBYn/JvKAT55FAwCXrH8W/ubd1jW7KalDvF1diaq/5ZWCMkdkcjfsjyM2ubMTcHB7m1bsfXxFUDWtoDJAuSedu1OFAed8SEN3N4Zl26oQXKFM=
+  file: "${TRAVIS_REPO_SLUG////-}-${TRAVIS_TAG}"
+  skip_cleanup: true
+  on:
+    repo: wpscholar/hello-world
+    branch: master
+    tags: true
