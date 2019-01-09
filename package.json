@@ -18,11 +18,5 @@
   "homepage": "https://github.com/wpscholar/hello-world#readme",
   "dependencies": {
     "lodash": "^4.17.11"
-  },
-  "autoload": {
-    "psr-4": {
-      "wpscholar\\HelloWorld\\Composer\\": ""
-    }
-  },
-  "pre-package-install": "wpscholar\\HelloWorld\\Composer\\EventHandler::prePackageInstall"
+  }
 }
