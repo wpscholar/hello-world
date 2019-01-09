@@ -9,5 +9,7 @@
             "email": "micah@wpscholar.com"
         }
     ],
-    "require": {}
+    "require": {
+        "wpscholar/flex-fields": "^1.7"
+    }
 }

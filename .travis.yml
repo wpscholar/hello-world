@@ -5,8 +5,7 @@ language: php
 php:
   - 7.2
 
-script:
-  - php -v
-  - composer -v
-  - node -v
-  - npm -v
+install:
+  - npm install
+  - composer install --no-ansi --no-interaction --no-dev --optimize-autoloader --no-progress --no-scripts
+  - tree -L 3 .
