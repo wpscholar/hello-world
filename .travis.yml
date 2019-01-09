@@ -2,14 +2,9 @@ dist: trusty
 
 language: php
 
-php:
-  - 7.2
-
-install:
+before_deploy:
   - npm install
   - composer install --no-ansi --no-interaction --no-dev --optimize-autoloader --no-progress --no-scripts
-
-before_deploy:
   - rm -rf node_modules
   - rm -rf .git
   - find . -name ".*" -type f -delete
