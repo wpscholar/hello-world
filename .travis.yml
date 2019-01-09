@@ -1,0 +1,11 @@
+dist: trusty
+
+language: php
+php:
+  - 7.2
+
+script:
+  - php -v
+  - composer -v
+  - node -v
+  - npm -v
