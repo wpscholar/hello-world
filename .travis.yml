@@ -21,7 +21,8 @@ deploy:
   provider: releases
   api_key:
     secure: GD+5qnnJ95GhCYYGjtlBsM6X3L1R8Ku7MHC+1ahUv4o4JcLu3xXSbFu/WAObufa6AiQQ+XfL9OSOiYiTd/yGHJDbwDeQ2tYpqBzwQI5xNypxO2eRtSkGEeIyFJaidwR4HspAsI0Vipqcd8n9WIfsvC6IiqJV5ATSs/lAkXEN/sy7bfUmUaa5uubI0U04Pk1EP9Xb19QsZ6Uhr+hmVyrTstw3gwe3W1GJdpZteUartw4s5i9d3OPUpruHgAf3vCEXOt0Czw3BbC7PZnztDQ8tn4X4+JvqdZPQh5a7R1/GSGrZDtJ467fELqFHhk2+egAmyYb78bZZJR3havrL1LhiYyqegBEOgzLiTZhGZha/MDCgU9RYn9/roqPlR3uqRtt+SuDV1FUTzduakKmYugB5/G9Pd5dVVi97JWhbjN/s6P30qufkFw5kmBxeK9qaAK+aPgz8q7TBkkJAD7lXJN/8SZIEmr5FJaCzJqOx+6rYG2s5J5mJn5rsmUmFUNeOafZhBXhbhwGIaysNQQpYXYNdCISqs0XcJ3taCCuVB6xcFGDB5akuMCQsQgAZeaVZvyzPRpZATk8e6PB76n+tn+eB9vlS/a5SP7lYtwSHy3xf+f6XMtJOBY5btC8bPhIjpyvE2lgHxoM+H89uaDZr1zuUJXNmw2JZrONqK3AKOvg5ry0=
-  file: "*"
+  file:
+    - "listener.php"
   skip_cleanup: true
   on:
     repo: wpscholar/hello-world
