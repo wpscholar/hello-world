@@ -3,7 +3,7 @@ dist: trusty
 language: php
 
 php:
-  - 7.2
+  - 7.1
 
 script:
   -
@@ -20,7 +20,7 @@ before_deploy:
 deploy:
   provider: releases
   api_key:
-    secure: ivYSJSeqs/vz17ykUvKiBrxZK5peyKoS6ZSqRl+VZB4SyerCkgeyqNY+a7tDatndtugmi3CYNws1M3UZSlDcuz7p2OnR+qfAmom5vPPrCsxZ7o+sstDdNcUHyAxA9WRh3uG6u8Bt2vRqjjzKzYh1EOkVCWsujAEeC/3Q5HtyB0YLf8fgezSEVKyEdAtZ7yygJVd/u5SJxKTvaX5J/NMTexBS/55GhMDcOsvHY3qior1WYfhqXNNj+gMxS6LfAjItXDCVb6ZVCPlwxs09PUlPM5VhsGil2XLvEO6ROQoL3IVMtMemIHd8pJVlLtDabOp7Yz648ZJRRb9X+WyJairYPWhTZfSlFnw57lxGd3tYliYdF5OBPrxX0fK91qxz/jUhiI/MjL6k0VTBNIKP9ukAxvAJzXTFgVTBO6IAuE8EC3S2rDyqP6lUHj7t2XhzvrX23zJOVxy5JmqIHDNCoODMI7BH9uoBkn3PdHZU2gEMGP9c58eko3oYJc/wtwU7dX+AanNOSkSd6W4ENylQLzasTJyYMiBXChxIYq3aReUTVI6zo1mHHOVFlj7hCdPwK3BBYn/JvKAT55FAwCXrH8W/ubd1jW7KalDvF1diaq/5ZWCMkdkcjfsjyM2ubMTcHB7m1bsfXxFUDWtoDJAuSedu1OFAed8SEN3N4Zl26oQXKFM=
+    secure: jxk1zyYsZ+GhqCf/W71rGjF90pfnOR/52L6JFP1UhARTl4T6GNCY55ZfzMLPXT9X24+ihw/nQuvEcN3kG0Ka3UuZaEtztZVuDDLNCUwt9i3u/YZA5Rs0rdYL2UXD0b1/j/xBEaQxvJ/HpFYx4P1zxP6E7HsEnZzk7QhTZqt9RezalLVBbg/gorujtSCGuT/8FKldfKKRVjBLSb6BM9+58EpcBT3dp2ierMn3DkyWibAZjvLwoblWgXwOtG1ya3t4r4su3euNDQX9RVpTkvaRs5ad5XcUofJZBHcsphTtyOto9qz+/QFFWMm8uHjUssFGe9rXNFdn8rgGyf3/G//D5SixN3iQzlC0EXhZkBmcbzqIVhKH2Yxez5QIepUHN1ZisIl6HejENrIMJVMdjSmUv+jGExajStbbjHlcEhmtvou6Awwkvaph9+5u3Vh6MdZkYSRiHT7VuVwJJq17+6XGcSff75fAexXlr0U/AfuPRC+oTnZuFYKxswhhbCohDItqGNWkqllmpvlljaK20RIojC4hjNkce/+YAbP+WRF4RdNro1s/pFrJqOCSypMjhq9MgMK/w2fI7UkaNbhpg6oGNRZEswoKX4X3/9KK2Q1hQiLjQbS3W66JwzTD3YARF5wtqw+wfDsh5fYLiT1xrdDpxb3VmtuH5oOwkF7I/x5um+4=
   file: "*"
   skip_cleanup: true
   on:
