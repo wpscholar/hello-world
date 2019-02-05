@@ -10,14 +10,12 @@
     }
   ],
   "require": {
-    "wpscholar/flex-fields": "^1.7"
+    "wpscholar/flex-fields": "^1.7",
+    "wpscholar/github-archive-installer": "@dev"
   },
   "autoload": {
     "psr-4": {
       "wpscholar\\HelloWorld\\Composer\\": ""
     }
-  },
-  "scripts": {
-    "pre-package-install": "wpscholar\\HelloWorld\\Composer\\EventHandler::prePackageInstall"
   }
 }
