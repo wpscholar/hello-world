@@ -10,8 +10,7 @@
     }
   ],
   "require": {
-    "wpscholar/flex-fields": "^1.7",
-    "wpscholar/github-archive-installer": "@dev"
+    "wpscholar/flex-fields": "^1.7"
   },
   "autoload": {
     "psr-4": {
