@@ -47,7 +47,8 @@ jobs:
       run: zip -r $REPO_NAME.zip . -x "*.git* /*node_modules/* .travis.yml /composer* /package*"
 
     - name: List Files
-      run: ls -
+      run: ls -lah
 
     - name: GITHUB_REF
+      shell: bash
       run: echo "${GITHUB_REF}"
