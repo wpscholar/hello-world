@@ -50,4 +50,4 @@ jobs:
       run: ls -
 
     - name: GITHUB_REF
-      run: echo $GITHUB_REF
+      run: echo "${GITHUB_REF}"
