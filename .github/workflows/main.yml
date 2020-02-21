@@ -4,8 +4,8 @@ env:
 
 on:
   push:
-    branches:
-      - master
+    tags:
+      - *
 
 jobs:
   build:
