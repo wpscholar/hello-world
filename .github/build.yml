@@ -1,0 +1,33 @@
+name: run-build
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Build
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Set Node.js 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+
+    - name: npm install
+      run: npm install
+
+    - name: Build JavaScript
+      run: npx webpack && npx webpack -p
+
+    - name: Validate composer.json and composer.lock
+      run: composer validate
+
+    - name: Install PHP Dependencies
+      run: composer install --prefer-dist --no-progress --no-suggest
