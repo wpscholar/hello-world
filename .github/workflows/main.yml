@@ -3,9 +3,9 @@ env:
   REPO_NAME: hello-world
 
 on:
-  push:
-    tags:
-      - '*'
+  release:
+    types:
+      - created
 
 jobs:
   build:
