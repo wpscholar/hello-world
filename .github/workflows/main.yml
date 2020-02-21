@@ -1,4 +1,6 @@
 name: run-build
+env:
+  REPO_NAME: hello-world
 
 on:
   push:
@@ -42,7 +44,10 @@ jobs:
       run: composer install --prefer-dist --no-progress --no-suggest --no-dev
 
     - name: Create Zip
-      run: zip -r hello-world.zip . -x "*.git* /*node_modules/* .travis.yml /composer* /package*"
+      run: zip -r $REPO_NAME.zip . -x "*.git* /*node_modules/* .travis.yml /composer* /package*"
 
     - name: List Files
-      run: ls -lah
+      run: ls -
+
+    - name: GITHUB_REF
+      run: echo $GITHUB_REF
