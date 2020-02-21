@@ -15,19 +15,34 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
+    - name: PHP version
+      run: php --version
+
     - name: Set Node.js 12.x
       uses: actions/setup-node@v1
       with:
         node-version: 12.x
 
+    - name: Node version
+      run: node --version
+
+    - name: NPM version
+      run: npm --version
+
     - name: npm install
       run: npm install
 
     - name: Build JavaScript
-      run: npx webpack && npx webpack -p
+      run: npm prune
 
     - name: Validate composer.json and composer.lock
       run: composer validate
 
     - name: Install PHP Dependencies
-      run: composer install --prefer-dist --no-progress --no-suggest
+      run: composer install --prefer-dist --no-progress --no-suggest --no-dev
+
+    - name: Create Zip
+      run: zip -r hello-world.zip . -x "*.git* /*node_modules/* .travis.yml /composer* /package*"
+
+    - name: List Files
+      run: ls -lah
