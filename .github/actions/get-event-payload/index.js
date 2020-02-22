@@ -21,11 +21,11 @@ async function run() {
 
     console.log(isBranch, isTag, isRelease);
 
-    const branchName = isBranch ? payload.ref.substr('refs/tags/'.length, payload.ref.length) : null;
-    const tagName = isTag ? payload.ref.substr('refs/tags/'.length, payload.ref.length) : null;
+//    const branchName = isBranch ? payload.ref.substr('refs/tags/'.length, payload.ref.length) : null;
+//    const tagName = isTag ? payload.ref.substr('refs/tags/'.length, payload.ref.length) : null;
     const releaseId = isRelease ? payload.release.id : null;
 
-    console.log(branchName, tagName, releaseId);
+//    console.log(branchName, tagName, releaseId);
 
     core.setOutput('payload', payload);
     core.setOutput('repositoryName', repositoryName);
@@ -33,8 +33,8 @@ async function run() {
     core.setOutput('isBranch', isBranch);
     core.setOutput('isTag', isTag);
     core.setOutput('isRelease', isRelease);
-    core.setOutput('branchName', branchName);
-    core.setOutput('tagName', tagName);
+//    core.setOutput('branchName', branchName);
+//    core.setOutput('tagName', tagName);
     core.setOutput('releaseId', releaseId);
 
   } catch(error) {
