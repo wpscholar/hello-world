@@ -25,9 +25,3 @@ jobs:
     - name: Get Payload Information
       id: payload_info
       uses: ./.github/actions/get-event-payload
-
-    - name: Test next step
-      shell: bash
-      run: echo "${{ data }}"
-      with:
-        data: ${{ steps.payload_info.outputs.releaseId }}
