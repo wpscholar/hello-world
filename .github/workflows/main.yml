@@ -1,6 +1,9 @@
 name: On Push
 
-on: [push]
+on:
+  release:
+    types:
+      - created
 
 env:
   REPO_NAME: hello-world
