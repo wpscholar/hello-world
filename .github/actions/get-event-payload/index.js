@@ -13,6 +13,9 @@ try {
 
   console.log(repositoryName, ownerName);
 
+  core.setOutput('repositoryName', repositoryName);
+  core.setOutput('ownerName', ownerName);
+
   /*const isBranch = payload.hasOwnProperty('ref') && payload.ref.includes('heads');
   const isTag = payload.hasOwnProperty('ref') && payload.ref.includes('tags');
   const isRelease = payload.hasOwnProperty('release');
