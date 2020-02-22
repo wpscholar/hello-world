@@ -1,5 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
+const replace = require('lodash.replace');
 
 try {
 
@@ -19,8 +20,8 @@ try {
 
   console.log(isBranch, isTag, isRelease);
 
-  const branchName = isBranch ? payload.ref.substr('refs/heads/'.length, payload.ref.length) : null;
-  const tagName = isTag ? payload.ref.substr('refs/tags/'.length, payload.ref.length) : null;
+  const branchName = isBranch ? replace(payload.ref, 'refs/heads/', '') : null;
+  const tagName = isTag ? replace(payload.ref, 'refs/tags/', '') : null;
   const releaseId = isRelease ? payload.release.id : null;
 
   console.log(branchName, tagName, releaseId);
