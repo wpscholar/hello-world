@@ -15,8 +15,8 @@ try {
   const isTag = payload.hasOwnProperty('ref') && payload.ref.includes('tag');
   const isRelease = payload.hasOwnProperty('release');
 
-  const branchName = isBranch ? payload.ref.replace('refs/heads/', '') : null;
-  const tagName = isTag ? payload.ref.replace('refs/tags/', '') : null;
+  const branchName = isBranch ? payload.ref.substr('refs/heads/'.length, payload.ref.length) : null;
+  const tagName = isTag ? payload.ref.substr('refs/tags/'.length, payload.ref.length) : null;
   const releaseId = isRelease ? payload.release.id : null;
 
   core.setOutput('payload', payload);
