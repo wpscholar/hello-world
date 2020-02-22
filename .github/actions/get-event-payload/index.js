@@ -33,7 +33,7 @@ try {
     isBranch,
     branchName,
     isTag,
-    tagName
+    tagName,
     isRelease,
     releaseId,
     payload
