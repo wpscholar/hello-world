@@ -1,7 +1,7 @@
 {
-  "name": "test-action",
+  "name": "get-event-payload-action",
   "version": "1.0.0",
-  "description": "Prints Hello World or the name of a person.",
+  "description": "Surfaces the payload for a GitHub event and makes certain attributes easier to access.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

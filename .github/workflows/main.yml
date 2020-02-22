@@ -22,7 +22,12 @@ jobs:
     - name: PHP version
       run: php --version
 
-    - name: Run local test action
-      uses: ./.github/actions/test
+    - name: Get Payload Information
+      id: payload_info
+      uses: ./.github/actions/get-event-payload
+
+    - name: Test next step
+      shell: bash
+      run: echo "${{ data }}"
       with:
-        who-to-greet: 'Micah'
+        data: ${{ steps.payload_info.outputs.releaseId }}

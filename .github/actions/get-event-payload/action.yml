@@ -1,0 +1,24 @@
+name: 'Get Event Payload'
+description: 'Surfaces the payload for a GitHub event and makes certain attributes easier to access.'
+outputs:
+  payload:
+    description: 'The event payload'
+  repositoryName:
+    description: 'The lowercase repository name'
+  ownerName:
+    description: 'The lowercase owner name'
+  isBranch:
+    description: 'Whether or not the event is the push of a branch'
+  isTag:
+    description: 'Whether or not the event is the push of a tag'
+  isRelease:
+    description: 'Whether or not the event is a release'
+  branchName:
+    description: 'The branch name'
+  tagName:
+    description: 'The tag name'
+  releaseId:
+    description: 'The release id'
+runs:
+  using: 'node12'
+  main: 'index.js'
