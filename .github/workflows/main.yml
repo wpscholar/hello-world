@@ -45,9 +45,7 @@ jobs:
       run: composer install --prefer-dist --no-progress --no-suggest --no-dev
 
     - name: Create Zip
-      run: zip -r ${{repoName}}.zip . -x "*.git* node_modules .travis.yml /composer* /package*"
-      with:
-        repoName: ${{ steps.event.repositoryName }}
+      run: zip -r ${{ steps.event.repositoryName }}.zip . -x "*.git* node_modules .travis.yml /composer* /package*"
 
     - name: List Files
       run: ls -lah
