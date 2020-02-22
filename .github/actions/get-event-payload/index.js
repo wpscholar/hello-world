@@ -11,10 +11,10 @@ try {
   const repositoryName = payload.repository.name.toLowerCase();
   const ownerName = payload.repository.owner.name.toLowerCase();
 
-  console.log(repositoryName, ownerName);
-
   core.setOutput('repositoryName', repositoryName);
   core.setOutput('ownerName', ownerName);
+
+  core.setOutput('payload', payload);
 
   /*const isBranch = payload.hasOwnProperty('ref') && payload.ref.includes('heads');
   const isTag = payload.hasOwnProperty('ref') && payload.ref.includes('tags');
