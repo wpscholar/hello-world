@@ -1,43 +1,48 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const replace = require('lodash.replace');
 
-try {
+async function run() {
 
-  // Get payload
-  const payload = github.context.payload;
+  try {
 
-  console.log(payload);
+    // Get payload
+    const payload = github.context.payload;
 
-  const repositoryName = payload.repository.name.toLowerCase();
-  const ownerName = payload.repository.owner.name.toLowerCase();
+    console.log(payload);
 
-  console.log(repositoryName, ownerName);
+    const repositoryName = payload.repository.name.toLowerCase();
+    const ownerName = payload.repository.owner.name.toLowerCase();
 
-  const isBranch = payload.hasOwnProperty('ref') && payload.ref.includes('heads');
-  const isTag = payload.hasOwnProperty('ref') && payload.ref.includes('tag');
-  const isRelease = payload.hasOwnProperty('release');
+    console.log(repositoryName, ownerName);
 
-  console.log(isBranch, isTag, isRelease);
+    const isBranch = payload.hasOwnProperty('ref') && payload.ref.includes('heads');
+    const isTag = payload.hasOwnProperty('ref') && payload.ref.includes('tags');
+    const isRelease = payload.hasOwnProperty('release');
 
-  const branchName = isBranch ? replace(payload.ref, 'refs/heads/', '') : null;
-  const tagName = isTag ? replace(payload.ref, 'refs/tags/', '') : null;
-  const releaseId = isRelease ? payload.release.id : null;
+    console.log(isBranch, isTag, isRelease);
 
-  console.log(branchName, tagName, releaseId);
+    const branchName = isBranch ? payload.ref.substr('refs/tags/'.length, payload.ref.length) : null;
+    const tagName = isTag ? payload.ref.substr('refs/tags/'.length, payload.ref.length) : null;
+    const releaseId = isRelease ? payload.release.id : null;
 
-  core.setOutput('payload', payload);
-  core.setOutput('repositoryName', repositoryName);
-  core.setOutput('ownerName', ownerName);
-  core.setOutput('isBranch', isBranch);
-  core.setOutput('isTag', isTag);
-  core.setOutput('isRelease', isRelease);
-  core.setOutput('branchName', branchName);
-  core.setOutput('tagName', tagName);
-  core.setOutput('releaseId', releaseId);
+    console.log(branchName, tagName, releaseId);
 
-} catch(error) {
+    core.setOutput('payload', payload);
+    core.setOutput('repositoryName', repositoryName);
+    core.setOutput('ownerName', ownerName);
+    core.setOutput('isBranch', isBranch);
+    core.setOutput('isTag', isTag);
+    core.setOutput('isRelease', isRelease);
+    core.setOutput('branchName', branchName);
+    core.setOutput('tagName', tagName);
+    core.setOutput('releaseId', releaseId);
 
-  core.setFailed(error.message);
+  } catch(error) {
+
+    core.setFailed(error.message);
+
+  }
 
 }
+
+run();
