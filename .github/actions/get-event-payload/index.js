@@ -6,6 +6,8 @@ try {
   // Get payload
   const payload = JSON.stringify(github.context.payload, undefined, 2);
 
+  console.log(payload);
+
   const repositoryName = payload.repository.name.toLowerCase();
   const ownerName = payload.repository.owner.name.toLowerCase();
 
