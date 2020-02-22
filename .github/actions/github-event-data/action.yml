@@ -1,8 +1,6 @@
-name: 'Get Event Payload'
-description: 'Surfaces the payload for a GitHub event and makes certain attributes easier to access.'
+name: 'GitHub Event Data'
+description: 'Surfaces GitHub event payload data in a useful way.'
 outputs:
-  payload:
-    description: 'The event payload'
   repositoryName:
     description: 'The lowercase repository name'
   ownerName:

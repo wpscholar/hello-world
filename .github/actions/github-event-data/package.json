@@ -1,7 +1,7 @@
 {
-  "name": "get-event-payload-action",
+  "name": "github-event-data-action",
   "version": "1.0.0",
-  "description": "Surfaces the payload for a GitHub event and makes certain attributes easier to access.",
+  "description": "Surfaces GitHub event payload data in a useful way.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
