@@ -14,7 +14,7 @@ try {
   core.setOutput('repositoryName', repositoryName);
   core.setOutput('ownerName', ownerName);
 
-  core.setOutput('payload', payload);
+  core.setOutput('payload', JSON.stringify(payload));
 
   /*const isBranch = payload.hasOwnProperty('ref') && payload.ref.includes('heads');
   const isTag = payload.hasOwnProperty('ref') && payload.ref.includes('tags');
