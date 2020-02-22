@@ -25,9 +25,9 @@ try {
 
 //    console.log(branchName, tagName, releaseId);
 
-  core.setOutput('payload', payload);
-  core.setOutput('repositoryName', repositoryName);
-  core.setOutput('ownerName', ownerName);
+  //core.setOutput('payload', payload);
+  //core.setOutput('repositoryName', repositoryName);
+  //core.setOutput('ownerName', ownerName);
   /*core.setOutput('isBranch', isBranch);
   core.setOutput('isTag', isTag);
   core.setOutput('isRelease', isRelease);*/
