@@ -4,7 +4,7 @@ const github = require('@actions/github');
 try {
 
   // Get payload
-  const payload = JSON.stringify(github.context.payload, undefined, 2);
+  const payload = github.context.payload;
 
   console.log(payload);
 
@@ -38,7 +38,8 @@ try {
     tagName,
     isRelease,
     releaseId,
-    payload
+    payload,
+    JSON.stringify(payload, undefined, 2)
   );
 
 } catch(error) {
