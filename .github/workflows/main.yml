@@ -1,9 +1,9 @@
 name: On Push
 
-on:
-  release:
-    types:
-      - created
+on: [push]
+#  release:
+#    types:
+#      - created
 
 jobs:
   build:
