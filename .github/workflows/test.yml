@@ -10,8 +10,12 @@ jobs:
         run: echo "$GITHUB_CONTEXT"
       - name: Dump GitHub repo name
         env:
-          REPO_NAME: ${{ github.repository.name }}
+          REPO_NAME: ${{ github.repository }}
         run: echo "$REPO_NAME"
+      - name: Dump GitHub upload URL name
+        env:
+          UPLOAD_URL: ${{ format('https://uploads.github.com/repos/{0}/releases/{1}/assets{?name,label}', github.repository, github.event.release.releaseId) }}
+        run: echo "$UPLOAD_URL"
       - name: Dump job context
         env:
           JOB_CONTEXT: ${{ toJson(job) }}

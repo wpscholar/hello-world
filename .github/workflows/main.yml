@@ -75,7 +75,7 @@ jobs:
       run: composer install --prefer-dist --no-progress --no-suggest --no-dev
 
     - name: Create Zip
-      run: zip -r ${{ github.repository.name }}.zip . --exclude @./.github/zip-exclude.txt
+      run: zip -r ${{ format(github.repository) }}.zip . --exclude @./.github/zip-exclude.txt
 
     - name: List Files
       run: ls -lah
@@ -86,7 +86,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        upload_url: https://uploads.github.com/repos/${{ github.repository }}/releases/${{github.event.release.releaseId}}/assets{?name,label}"
+        upload_url: ${{ format('https://uploads.github.com/repos/{0}/releases/{1}/assets{?name,label}', github.repository, github.event.release.releaseId) }}
         asset_path: ./${{ github.repository.name }}.zip
         asset_name: ${{ github.repository.name }}.zip
         asset_content_type: application/zip
