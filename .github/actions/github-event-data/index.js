@@ -6,6 +6,8 @@ try {
   // Get payload
   const payload = github.context.payload;
 
+  console.log(payload);
+
   const repositoryName = github.context.payload.repository.name;
   core.setOutput('repositoryName', repositoryName);
 
