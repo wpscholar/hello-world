@@ -6,8 +6,11 @@ try {
   // Get payload
   const payload = github.context.payload;
 
-  core.setOutput('repositoryName', payload.repository.name.toLowerCase() || '');
-  core.setOutput('ownerName', payload.repository.owner.name.toLowerCase() || payload.repository.owner.login.toLowerCase() || '');
+  const repositoryName = payload.repository.name || '';
+  core.setOutput('repositoryName', repositoryName.toLowerCase());
+
+  const ownerName = payload.repository.owner.name || payload.repository.owner.login || '';
+  core.setOutput('ownerName', ownerName.toLowerCase());
 
   const isBranch = payload.hasOwnProperty('ref') && payload.ref.includes('heads');
   const isTag = payload.hasOwnProperty('ref') && payload.ref.includes('tags');
