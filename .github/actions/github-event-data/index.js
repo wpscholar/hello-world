@@ -6,12 +6,10 @@ try {
   // Get payload
   const payload = github.context.payload;
 
-  console.log(payload);
-
-  const repositoryName = github.context.payload.repository.name.toLowerCase();
+  const repositoryName = github.context.payload.repository.name;
   core.setOutput('repositoryName', repositoryName);
 
-  const ownerName = payload.repository.owner.name.toLowerCase();
+  const ownerName = payload.repository.owner.name;
   core.setOutput('ownerName', ownerName);
 
   const isBranch = payload.hasOwnProperty('ref') && payload.ref.includes('heads');
