@@ -6,6 +6,8 @@ try {
   // Get payload
   const payload = github.context.payload;
 
+  console.log(payload);
+
   const repositoryName = github.context.payload.repository.name;
   core.setOutput('repositoryName', repositoryName);
 
@@ -21,13 +23,13 @@ try {
   const isRelease = payload.hasOwnProperty('release');
   core.setOutput('isRelease', isRelease);
 
-  const branchName = isBranch ? payload.ref.substr('refs/tags/'.length, payload.ref.length) : false;
+  const branchName = isBranch ? payload.ref.substr('refs/tags/'.length, payload.ref.length) : '';
   core.setOutput('branchName', branchName);
 
-  const tagName = isTag ? payload.ref.substr('refs/tags/'.length, payload.ref.length) : false;
+  const tagName = isTag ? payload.ref.substr('refs/tags/'.length, payload.ref.length) : '';
   core.setOutput('tagName', tagName);
 
-  const releaseId = isRelease ? payload.release.id : false;
+  const releaseId = isRelease ? payload.release.id : '';
   core.setOutput('releaseId', releaseId);
 
 } catch(error) {
