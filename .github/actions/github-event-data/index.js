@@ -21,13 +21,13 @@ try {
   const isRelease = payload.hasOwnProperty('release');
   core.setOutput('isRelease', isRelease);
 
-  const branchName = isBranch ? payload.ref.substr('refs/tags/'.length, payload.ref.length) : null;
+  const branchName = isBranch ? payload.ref.substr('refs/tags/'.length, payload.ref.length) : false;
   core.setOutput('branchName', branchName);
 
-  const tagName = isTag ? payload.ref.substr('refs/tags/'.length, payload.ref.length) : null;
+  const tagName = isTag ? payload.ref.substr('refs/tags/'.length, payload.ref.length) : false;
   core.setOutput('tagName', tagName);
 
-  const releaseId = isRelease ? payload.release.id : null;
+  const releaseId = isRelease ? payload.release.id : false;
   core.setOutput('releaseId', releaseId);
 
 } catch(error) {
