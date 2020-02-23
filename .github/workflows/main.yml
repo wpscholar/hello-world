@@ -1,9 +1,9 @@
 name: Package Plugin
 
-on: #[push]
-  release:
-    types:
-      - created
+on: [gollum]
+#  release:
+#    types:
+#      - created
 
 jobs:
   build:

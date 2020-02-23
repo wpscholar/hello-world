@@ -1,37 +1,48 @@
-on: push
+on: #push
+  release:
+    types:
+      - created
 
 jobs:
   one:
     runs-on: ubuntu-16.04
     steps:
+
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
+
       - name: Dump GitHub repo name
         env:
           REPO_NAME: ${{ github.repository }}
         run: echo "$REPO_NAME"
+
       - name: Dump GitHub upload URL name
         env:
-          UPLOAD_URL: ${{ format('https://uploads.github.com/repos/{0}/releases/{1}/assets{?name,label}', github.repository, github.event.release.releaseId) }}
+          UPLOAD_URL: https://uploads.github.com/repos/${{ github.repository }}/releases/${{ github.event.release.id }}/assets{?name,label}
         run: echo "$UPLOAD_URL"
+
       - name: Dump job context
         env:
           JOB_CONTEXT: ${{ toJson(job) }}
         run: echo "$JOB_CONTEXT"
+
       - name: Dump steps context
         env:
           STEPS_CONTEXT: ${{ toJson(steps) }}
         run: echo "$STEPS_CONTEXT"
+
       - name: Dump runner context
         env:
           RUNNER_CONTEXT: ${{ toJson(runner) }}
         run: echo "$RUNNER_CONTEXT"
+
       - name: Dump strategy context
         env:
           STRATEGY_CONTEXT: ${{ toJson(strategy) }}
         run: echo "$STRATEGY_CONTEXT"
+
       - name: Dump matrix context
         env:
           MATRIX_CONTEXT: ${{ toJson(matrix) }}
