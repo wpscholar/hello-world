@@ -1,7 +1,6 @@
-on: #push
-  release:
-    types:
-      - created
+name: Debug
+
+on: [push, release]
 
 jobs:
   one:

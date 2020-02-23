@@ -1,9 +1,12 @@
 name: Package Plugin
 
-on: [gollum]
-#  release:
-#    types:
-#      - created
+on:
+  release:
+    types:
+      - created
+
+env:
+  PACKAGE_NAME: hello-world
 
 jobs:
   build:
@@ -13,40 +16,6 @@ jobs:
 
     - name: Checkout
       uses: actions/checkout@v2
-
-    - name: Dump GitHub context
-      env:
-        GITHUB_CONTEXT: ${{ toJson(github) }}
-      run: echo "$GITHUB_CONTEXT"
-
-    - name: Dump job context
-      env:
-        JOB_CONTEXT: ${{ toJson(job) }}
-      run: echo "$JOB_CONTEXT"
-
-    - name: Dump steps context
-      env:
-        STEPS_CONTEXT: ${{ toJson(steps) }}
-      run: echo "$STEPS_CONTEXT"
-
-    - name: Dump runner context
-      env:
-        RUNNER_CONTEXT: ${{ toJson(runner) }}
-      run: echo "$RUNNER_CONTEXT"
-
-    - name: Dump strategy context
-      env:
-        STRATEGY_CONTEXT: ${{ toJson(strategy) }}
-      run: echo "$STRATEGY_CONTEXT"
-
-    - name: Dump matrix context
-      env:
-        MATRIX_CONTEXT: ${{ toJson(matrix) }}
-      run: echo "$MATRIX_CONTEXT"
-
-#    - name: Get Event Data
-#      id: event
-#      uses: ./.github/actions/github-event-data
 
     - name: PHP version
       run: php --version
@@ -75,7 +44,7 @@ jobs:
       run: composer install --prefer-dist --no-progress --no-suggest --no-dev
 
     - name: Create Zip
-      run: zip -r ${{ format(github.repository) }}.zip . --exclude @./.github/zip-exclude.txt
+      run: zip -r ${{ PACKAGE_NAME }}.zip . --exclude @./.github/zip-exclude.txt
 
     - name: List Files
       run: ls -lah
@@ -86,7 +55,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        upload_url: ${{ format('https://uploads.github.com/repos/{0}/releases/{1}/assets{?name,label}', github.repository, github.event.release.releaseId) }}
-        asset_path: ./${{ github.repository.name }}.zip
-        asset_name: ${{ github.repository.name }}.zip
+        upload_url: https://uploads.github.com/repos/${{ github.repository }}/releases/${{ github.event.release.id }}/assets{?name,label}
+        asset_path: ./${{ PACKAGE_NAME }}.zip
+        asset_name: ${{ PACKAGE_NAME }}.zip
         asset_content_type: application/zip
