@@ -6,7 +6,9 @@ try {
   // Get payload
   const payload = github.context.payload;
 
-  const repositoryName = payload.repository.name.toLowerCase();
+  console.log(payload);
+
+  const repositoryName = github.context.payload.repository.name.toLowerCase();
   core.setOutput('repositoryName', repositoryName);
 
   const ownerName = payload.repository.owner.name.toLowerCase();
