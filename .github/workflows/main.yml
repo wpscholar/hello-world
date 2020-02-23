@@ -56,6 +56,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: https://uploads.github.com/repos/${{ github.repository }}/releases/${{ github.event.release.id }}/assets{?name,label}
-        asset_path: .
+        asset_path: ./hello-world.zip
         asset_name: hello-world.zip
         asset_content_type: application/zip
