@@ -44,7 +44,7 @@ jobs:
       run: composer install --prefer-dist --no-progress --no-suggest --no-dev
 
     - name: Create Zip
-      run: zip -r ${PACKAGE_NAME}.zip . --exclude @./.github/zip-exclude.txt
+      run: zip -r hello-world.zip . --exclude @./.github/zip-exclude.txt
 
     - name: List Files
       run: ls -lah
@@ -56,6 +56,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: https://uploads.github.com/repos/${{ github.repository }}/releases/${{ github.event.release.id }}/assets{?name,label}
-        asset_path: ${{ format('./{0}.zip', ${PACKAGE_NAME}) }}
-        asset_name: ${{ format('{0}.zip', ${PACKAGE_NAME}) }}
+        asset_path: .
+        asset_name: hello-world.zip
         asset_content_type: application/zip
