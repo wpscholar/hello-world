@@ -6,32 +6,18 @@ try {
   // Get payload
   const payload = github.context.payload;
 
-  console.log(payload);
-
-  const repositoryName = github.context.payload.repository.name;
-  core.setOutput('repositoryName', repositoryName);
-
-  const ownerName = payload.repository.owner.name;
-  core.setOutput('ownerName', ownerName);
+  core.setOutput('repositoryName', payload.repository.name.toLowerCase() || '');
+  core.setOutput('ownerName', payload.repository.owner.name.toLowerCase() || payload.repository.owner.login.toLowerCase() || '');
 
   const isBranch = payload.hasOwnProperty('ref') && payload.ref.includes('heads');
-
-  const isTag = payload.hasOwnProperty('ref') && payload.ref.includes('tags');  core.setOutput('isTag', isTag);
-
+  const isTag = payload.hasOwnProperty('ref') && payload.ref.includes('tags');
   const isRelease = payload.hasOwnProperty('release');
 
-  const branchName = isBranch ? payload.ref.substr('refs/tags/'.length, payload.ref.length) : '';
-  core.setOutput('branchName', branchName);
-
-  const tagName = isTag ? payload.ref.substr('refs/tags/'.length, payload.ref.length) : '';
-  core.setOutput('tagName', tagName);
-
-  const releaseId = isRelease ? payload.release.id : '';
-  core.setOutput('releaseId', releaseId);
+  core.setOutput('branchName', isBranch ? payload.ref.substr('refs/tags/'.length, payload.ref.length) : '');
+  core.setOutput('tagName', isTag ? payload.ref.substr('refs/tags/'.length, payload.ref.length) : '');
+  core.setOutput('releaseId', isRelease ? String(payload.release.id) : '');
 
 } catch(error) {
-
-  console.log(error);
 
   core.setFailed(error.message);
 
