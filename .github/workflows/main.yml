@@ -11,17 +11,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+    - name: Get version
+      id: tag
+      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+
     - name: Repository Dispatch
       uses: peter-evans/repository-dispatch@v1
       with:
         token: ${{ secrets.WEBHOOK_TOKEN }}
         repository: wpscholar/satis
-        event-type: trigger-satis-build
+        event-type: trigger_satis_build
         client-payload: >-
           {
-            "ref": "${{ github.ref }}",
-            "sha": "${{ github.sha }}",
             "vendor": "wpscholar",
             "package": "hello-world",
-            "version": "${{ github.event.release.id }}"
+            "version": "${{ steps.tag.outputs.VERSION }}"
           }
