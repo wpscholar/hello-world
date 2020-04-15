@@ -4,9 +4,7 @@ on:
   release:
     types:
       - created
-
-env:
-  REPO: wpscholar/hello-world
+      - updated
 
 jobs:
   webhook:
