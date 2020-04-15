@@ -4,7 +4,6 @@ on:
   release:
     types:
       - created
-      - updated
 
 jobs:
   webhook:
@@ -12,19 +11,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    - name: Send request
-      uses: wei/curl@v1
-      with:
-        args: >
-          -X POST ${{ secrets.WEBHOOK_URL }}
-          -H 'Accept: application/vnd.github.everest-preview+json'
-          -H 'Authorization: token ${{ secrets.WEBHOOK_TOKEN }}'
-          --data '{
-            "event_type": "trigger_satis_build",
-            "client_payload":
-              {
-                "vendor": "wpscholar",
-                "package": "hello-world",
-                "version": "${{ github.event.release.id }}"
-              }
-          }'
+    - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.WEBHOOK_TOKEN }}
+          repository: wpscholar/satis
+          event-type: trigger-satis-build
+          client-payload: >-
+            {
+              "ref": "${{ github.ref }}",
+              "sha": "${{ github.sha }}",
+              "vendor": "wpscholar",
+              "package": "hello-world",
+              "version": "${{ github.event.release.id }}"
+            }
