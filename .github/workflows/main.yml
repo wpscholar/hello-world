@@ -25,12 +25,6 @@ jobs:
         REPO: ${{ github.repository }}
       run: echo ::set-output name=PACKAGE::${REPO##*/}
 
-    - name: Get vendor
-      id: vendor
-      env:
-        REPO: ${{ github.repository }}
-      run: echo ::set-output name=VENDOR::${REPO#*/}
-
     - name: Get version
       id: tag
       run: echo ::set-output name=VERSION::${GITHUB_REF##*/}
@@ -43,7 +37,7 @@ jobs:
         event-type: trigger_satis-build
         client-payload: >-
           {
-            "vendor": "${{ steps.vendor.outputs.VENDOR }}",
+            "vendor": "${{ github.repository_owner }}",
             "package": "${{ steps.package.outputs.PACKAGE }}",
             "version": "${{ steps.tag.outputs.VERSION }}"
           }
