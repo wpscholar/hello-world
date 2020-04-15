@@ -5,15 +5,28 @@ on:
     types:
       - created
 
+env:
+  REPO: wpscholar/hello-world
+
 jobs:
-  build:
+  webhook:
     name: Send Webhook
     runs-on: ubuntu-latest
     steps:
 
-    - name: Webhook
-      uses: zzzze/webhook-trigger@master
+    - name: Send request
+      uses: wei/curl@v1
       with:
-        data: '{"event_type": "trigger_satis_build"}'
-        webhook_url: ${{ secrets.WEBHOOK_URL }}
-        options: '-H "Accept: application/vnd.github.everest-preview+json" -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}"'
+        args: >
+        -X POST ${{ secrets.WEBHOOK_URL }}
+        -H 'Accept: application/vnd.github.everest-preview+json'
+        -H 'Authorization: token ${{ secrets.WEBHOOK_TOKEN }}'
+        --data '{
+          "event_type": "trigger_satis_build",
+          "client_payload":
+            {
+              "vendor": "wpscholar",
+              "package": "hello-world",
+              "version": "${{ github.event.release.id }}"
+            }
+        }'
