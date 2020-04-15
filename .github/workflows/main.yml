@@ -21,11 +21,15 @@ jobs:
 
     - name: Get package
       id: package
-      run: echo ::set-output name=PACKAGE::${${{ github.repository }}##*/}
+      env:
+        REPO: ${{ github.repository }}
+      run: echo ::set-output name=PACKAGE::${REPO##*/}
 
     - name: Get vendor
       id: vendor
-      run: echo ::set-output name=VENDOR::${${{ github.repository }}#*/}
+      env:
+        REPO: ${{ github.repository }}
+      run: echo ::set-output name=VENDOR::${REPO#*/}
 
     - name: Get version
       id: tag
