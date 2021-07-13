@@ -21,7 +21,6 @@ jobs:
       - working-directory: /home/runner
         run: mkdir dist
 
-      - run: cp listener.php ${{ runner.temp }}/listener.php
       - run: cp listener.php /home/runner/dist/listener.php
 
       - run: ls -lah /home/runner/dist
@@ -34,7 +33,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - run: ls -lah ${{ runner.temp }}
-      - run: tree -d /home/runner/
+      - run: tree -a /home/runner/dist
 
-      - run: cat /github/home/dist/listener.php
+      - run: cat /home/runner/dist/listener.php
