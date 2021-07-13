@@ -35,6 +35,6 @@ jobs:
         uses: actions/checkout@v2
 
       - run: ls -lah ${{ runner.temp }}
-      - run: ls -lah /home/runner/dist
+      - run: tree -a /home/runner/
 
       - run: cat /github/home/dist/listener.php
