@@ -9,6 +9,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - run: cd /github/home && mkdir dist && cd -
       - run: cp listener.php /github/home/dist/listener.php
       - run: ls -lah /github/home/dist
 
