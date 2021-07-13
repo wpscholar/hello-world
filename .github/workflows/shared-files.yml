@@ -25,14 +25,17 @@ jobs:
 
       - run: ls -lah /home/runner/dist
 
+      - uses: actions/upload-artifact@v2
+        with:
+          name: my-artifact
+          path: .
+
   b:
     name: B
     needs: a
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - run: tree -a /home/runner/dist
-
-      - run: cat /home/runner/dist/listener.php
+      - uses: actions/download-artifact@v2
+          with:
+            name: my-artifact
+            - run: ls -lah
