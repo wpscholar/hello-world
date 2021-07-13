@@ -1,0 +1,12 @@
+name: Action 2
+on:
+  workflow_run:
+    workflows: [ "Action 1" ]
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: my-artifact
+      - run: ls -lah
