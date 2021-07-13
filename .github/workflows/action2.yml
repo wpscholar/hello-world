@@ -2,6 +2,7 @@ name: Action 2
 on:
   workflow_run:
     workflows: [ "Action 1" ]
+    types: [ completed ]
 jobs:
   run:
     runs-on: ubuntu-latest
