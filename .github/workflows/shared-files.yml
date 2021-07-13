@@ -2,7 +2,7 @@ name: Shared Files
 
 on: [ push ]
 
-job:
+jobs:
   a:
     name: A
     runs-on: ubuntu-latest
