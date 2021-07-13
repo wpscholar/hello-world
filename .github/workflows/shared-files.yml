@@ -9,15 +9,32 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - run: cd /github/home && mkdir dist && cd -
-      - run: cp listener.php /github/home/dist/listener.php
-      - run: ls -lah /github/home/dist
+
+      - name: Get details
+        run: |
+          echo "PWD: $PWD"
+          echo "github.action_path: ${{ github.action_path }}"
+          echo "github.event_path: ${{ github.event_path }}"
+          echo "runner.temp: ${{ runner.temp }}"
+          echo "runner.workspace: ${{ runner.workspace }}"
+
+      - working-directory: /home/runner
+        run: mkdir dist
+
+      - run: cp listener.php ${{ runner.temp }}/listener.php
+      - run: cp listener.php /home/runner/dist/listener.php
+
+      - run: ls -lah /home/runner/dist
 
   b:
     name: B
+    needs: a
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - run: ls -lah /github/home/dist
+
+      - run: ls -lah ${{ runner.temp }}/dist
+      - run: ls -lah /home/runner/dist
+
       - run: cat /github/home/dist/listener.php
