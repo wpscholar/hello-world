@@ -1,0 +1,22 @@
+name: Shared Files
+
+on: [ push ]
+
+job:
+  a:
+    name: A
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - run: cp listener.php /github/home/dist/listener.php
+      - run: ls -lah /github/home/dist
+
+  b:
+    name: B
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - run: ls -lah /github/home/dist
+      - run: cat /github/home/dist/listener.php
