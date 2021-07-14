@@ -23,4 +23,5 @@
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  */
 
-$test = __( 'Hello World!', 'hello-world' );
+$test  = __( 'Hello World!', 'hello-world' );
+$test2 = __( 'Nope' );
