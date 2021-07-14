@@ -1,12 +1,10 @@
 name: WP Internationalization
 on:
   push:
-    paths:
-      - '**.php'
+    branches:
+      - '**'
     pull_request:
       types: [ opened, edited, synchronize, reopened, ready_for_review ]
-      paths:
-        - '**.php'
 concurrency:
   group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.head_ref || github.sha }}
   cancel-in-progress: true
