@@ -60,7 +60,7 @@ jobs:
         run: composer validate
 
       - name: Install PHP Dependencies
-        run: composer install --no-progress --no-dev --optimize-autoloader
+        run: composer install --no-progress --optimize-autoloader
 
       - name: Add text domains
         run: npx node-wp-i18n addtextdomain
