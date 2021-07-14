@@ -72,13 +72,12 @@ jobs:
 
       - name: Check if there are file changes
         id: changes
-        uses: UnicornGlobal/has-changes-action@v1
+        uses: UnicornGlobal/has-changes-action@v1.0.12
 
       - name: Commit web files
         if: steps.changes.outputs.changed == 1
         run: |
           git remote -v
-          git status
           git add -A
           git commit -m "WordPress I18N triggered by commit ${{ github.sha }}"
           git status
