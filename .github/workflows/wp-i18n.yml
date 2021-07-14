@@ -75,6 +75,8 @@ jobs:
       - name: Commit web files
         if: steps.changes.outputs.changed == 1
         run: |
+          git config --local user.name "Micah Wood"
+          git config --local user.email "micah@wpscholar.com"
           git remote -v
           git add -A
           git commit -m "WordPress I18N triggered by commit ${{ github.sha }}"
