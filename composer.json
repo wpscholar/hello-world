@@ -16,5 +16,9 @@
     "psr-4": {
       "wpscholar\\HelloWorld\\Composer\\": ""
     }
+  },
+  "require-dev": {
+    "wp-cli/i18n-command": "^2.2",
+    "wp-cli/wp-cli-bundle": "^2.5"
   }
 }

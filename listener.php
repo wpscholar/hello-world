@@ -1,3 +1,3 @@
 <?php
 
-echo 'Test this';
+echo esc_html__( 'Test this' );
