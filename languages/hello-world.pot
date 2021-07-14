@@ -30,6 +30,10 @@ msgstr ""
 msgid "Hello World!"
 msgstr ""
 
+#: hello-world.php:27
+msgid "Nope"
+msgstr ""
+
 #: listener.php:3
 msgid "Test this"
 msgstr ""

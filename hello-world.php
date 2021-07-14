@@ -24,4 +24,4 @@
  */
 
 $test  = __( 'Hello World!', 'hello-world' );
-$test2 = __( 'Nope' );
+$test2 = __( 'Nope', 'hello-world' );
