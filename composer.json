@@ -9,16 +9,19 @@
       "email": "micah@wpscholar.com"
     }
   ],
-  "require": {
-    "wpscholar/flex-fields": "^1.7"
-  },
   "autoload": {
     "psr-4": {
       "wpscholar\\HelloWorld\\Composer\\": ""
     }
   },
-  "require-dev": {
-    "wp-cli/i18n-command": "^2.2",
-    "wp-cli/wp-cli-bundle": "^2.5"
+  "repositories": [
+    {
+      "type": "path",
+      "url": "../../libraries/wp-forge/wp-update-handler",
+      "symlink": true
+    }
+  ],
+  "require": {
+    "wp-forge/wp-update-handler": "@dev"
   }
 }
