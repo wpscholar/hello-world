@@ -20,5 +20,8 @@
   "require-dev": {
     "wp-cli/i18n-command": "^2.2",
     "wp-cli/wp-cli-bundle": "^2.5"
+  },
+  "scripts": {
+    "i18n": "vendor/bin/wp i18n make-pot . ./languages/hello-world.pot --headers='{\"Report-Msgid-Bugs-To\":\"https://github.com/wpscholar/hello-world/issues\",\"POT-Creation-Date\":null}' --exclude=assets,storybook,tests"
   }
 }
