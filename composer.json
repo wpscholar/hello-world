@@ -9,19 +9,13 @@
       "email": "micah@wpscholar.com"
     }
   ],
-  "require": {
-    "wpscholar/flex-fields": "^1.7"
-  },
   "autoload": {
     "psr-4": {
       "wpscholar\\HelloWorld\\Composer\\": ""
     }
   },
-  "require-dev": {
-    "wp-cli/i18n-command": "^2.2",
-    "wp-cli/wp-cli-bundle": "^2.5"
-  },
-  "scripts": {
-    "i18n": "vendor/bin/wp i18n make-pot . ./languages/hello-world.pot --headers='{\"Report-Msgid-Bugs-To\":\"https://github.com/wpscholar/hello-world/issues\",\"POT-Creation-Date\":null}' --exclude=assets,storybook,tests"
+  "require": {
+    "wp-forge/wp-update-handler": "@dev",
+    "wpscholar/flex-fields": "^1.7"
   }
 }
