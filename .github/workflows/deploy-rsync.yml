@@ -1,0 +1,37 @@
+name: Deploy to Bluehost Shared
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    environment: bluehost-shared
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Workflow Context
+        id: workflow
+        working-directory: ${{ runner.temp }}
+        env:
+          REPO: ${{ github.repository }}
+        run: |
+          mkdir dist
+          echo ::set-output name=DIST::${PWD}/dist
+          echo ::set-output name=PACKAGE::${REPO##*/}
+
+      - name: Deploy to server
+        uses: Pendect/action-rsyncer@v1.1.0
+        env:
+          DEPLOY_KEY: ${{ secrets.SERVER_SSH_PRIVATE_KEY }}
+        with:
+          flags: '-acvz --delete-after --force'
+          options: '--include-from=.distinclude --exclude-from=.distignore --chmod=D755,F644 --chown=${{ secrets.SERVER_USERNAME }}:${{ secrets.SERVER_USERNAME }}'
+          ssh_options: '-p ${{ secrets.SERVER_PORT }}'
+          src: './'
+          dest: '${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }}:${{ secrets.SERVER_PATH }}/wp-content/plugins/${{ steps.workflow.outputs.PACKAGE }}'
