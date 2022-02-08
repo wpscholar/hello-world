@@ -35,3 +35,6 @@ jobs:
           ssh_options: '-p ${{ secrets.SERVER_PORT }}'
           src: './'
           dest: '${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }}:${{ secrets.SERVER_PATH }}/wp-content/plugins/${{ steps.workflow.outputs.PACKAGE }}'
+
+      - name: Activate plugin
+        run: wp plugin activate ${{ steps.workflow.outputs.PACKAGE }} --ssh=${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }}:${{ secrets.SERVER_PORT }}${{ secrets.SERVER_PATH }}
