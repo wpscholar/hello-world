@@ -9,7 +9,7 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    environment: bluehost-shared
+    environment: bluehost-vps
     steps:
 
       - name: Checkout
