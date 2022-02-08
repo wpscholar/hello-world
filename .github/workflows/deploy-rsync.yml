@@ -47,12 +47,12 @@ jobs:
 
       - name: Set up SSH
         uses: LuisEnMarroquin/setup-ssh-action@v2.0.0
-          with:
-            SSHKEY: ${{ secrets.SERVER_SSH_PRIVATE_KEY }}
-            ORIGIN: ${{ secrets.SERVER_IP }}
-            NAME: production
-            PORT: ${{ secrets.SERVER_PORT }}
-            USER: ${{ secrets.SERVER_USERNAME }}
+        with:
+          SSHKEY: ${{ secrets.SERVER_SSH_PRIVATE_KEY }}
+          ORIGIN: ${{ secrets.SERVER_IP }}
+          NAME: production
+          PORT: ${{ secrets.SERVER_PORT }}
+          USER: ${{ secrets.SERVER_USERNAME }}
 
       - name: Activate plugin
         run: wp plugin activate ${{ steps.workflow.outputs.PACKAGE }} --ssh=production${{ secrets.SERVER_PATH }}
