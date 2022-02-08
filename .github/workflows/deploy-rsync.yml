@@ -31,6 +31,9 @@ jobs:
           chmod +x wp-cli.phar
           mv wp-cli.phar /usr/local/bin/wp
 
+      - name: Show WP-CLI version
+        run: wp cli version
+
       - name: Deploy to server
         uses: Pendect/action-rsyncer@v1.1.0
         env:
