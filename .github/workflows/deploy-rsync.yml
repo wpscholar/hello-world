@@ -25,15 +25,6 @@ jobs:
           echo ::set-output name=DIST::${PWD}/dist
           echo ::set-output name=PACKAGE::${REPO##*/}
 
-      - name: Install WP-CLI
-        run: |
-          curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-          chmod +x wp-cli.phar
-          mv wp-cli.phar /usr/local/bin/wp
-
-      - name: Show WP-CLI version
-        run: wp cli version
-
       - name: Deploy to server
         uses: Pendect/action-rsyncer@v1.1.0
         env:
@@ -45,14 +36,11 @@ jobs:
           src: './'
           dest: '${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }}:${{ secrets.SERVER_PATH }}/wp-content/plugins/${{ steps.workflow.outputs.PACKAGE }}'
 
-      - name: Set up SSH
-        uses: LuisEnMarroquin/setup-ssh-action@v2.0.0
-        with:
-          SSHKEY: ${{ secrets.SERVER_SSH_PRIVATE_KEY }}
-          ORIGIN: ${{ secrets.SERVER_IP }}
-          NAME: production
-          PORT: ${{ secrets.SERVER_PORT }}
-          USER: ${{ secrets.SERVER_USERNAME }}
-
       - name: Activate plugin
-        run: wp plugin activate ${{ steps.workflow.outputs.PACKAGE }} --ssh=production${{ secrets.SERVER_PATH }}
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SERVER_SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SERVER_PORT }}
+          script: wp plugin activate ${{ steps.workflow.outputs.PACKAGE }}
