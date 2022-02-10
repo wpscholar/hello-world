@@ -1,0 +1,22 @@
+name: Run WebPageTest on Bluehost VPS
+
+on:
+  workflow_run:
+    workflows: [ "Deploy to Bluehost VPS" ]
+    types:
+      - completed
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: WebPageTest
+        uses: WPO-Foundation/webpagetest-github-action@main
+        with:
+          apiKey: ${{ secrets.WPT_API_KEY }}
+          urls: |
+            https://example.com/
+            https://example.com/about
+          label: 'GitHub Action Test'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

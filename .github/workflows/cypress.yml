@@ -1,0 +1,27 @@
+name: Cypress Tests on Bluehost VPS
+
+on:
+  workflow_run:
+    workflows: [ "Deploy to Bluehost VPS" ]
+    types:
+      - completed
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    environment: bluehost-vps
+    steps:
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          spec: tests/cypress/performance.spec.js
+        env:
+          CYPRESS_baseUrl: ${{ secrets.CYPRESS_BASEURL }}
+          CYPRESS_wpUsername: ${{ secrets.CYPRESS_WP_USERNAME }}
+          CYPRESS_wpPassword: ${{ secrets.CYPRESS_WP_PASSWORD }}
+
+      - uses: actions/upload-artifact@v1
+        with:
+          name: performance-logs
+          path: logs/performance-logs.txt

@@ -1,0 +1,26 @@
+{
+  "name": "hello-world",
+  "private": true,
+  "description": "A playground repo for testing code, build processes, etc.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wpscholar/hello-world.git"
+  },
+  "author": {
+    "name": "Micah Wood",
+    "email": "micah@wpscholar.com"
+  },
+  "license": "GPL-2.0-or-later",
+  "bugs": {
+    "url": "https://github.com/wpscholar/hello-world/issues"
+  },
+  "homepage": "https://github.com/wpscholar/hello-world#readme",
+  "devDependencies": {
+    "cypress": "^9.4.1",
+    "cypress-terminal-report": "^3.4.2"
+  }
+}

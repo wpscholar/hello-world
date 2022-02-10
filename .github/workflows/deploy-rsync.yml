@@ -1,4 +1,4 @@
-name: Deploy to Bluehost Shared
+name: Deploy to Bluehost VPS
 
 on:
   push:
