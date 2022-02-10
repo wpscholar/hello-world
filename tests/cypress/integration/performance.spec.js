@@ -13,7 +13,7 @@ describe('WordPress', () => {
 					(entries) => {
 						entries
 							.forEach(
-								({url, description, loadTimeInSeconds }) => {
+								({url, description, duration: loadTimeInMilliseconds }) => {
 
 									cy.visit(
 										url,
@@ -31,7 +31,7 @@ describe('WordPress', () => {
 											performance.measure('pageLoad', 'start-loading', 'end-loading');
 											const measure = performance.getEntriesByName('pageLoad')[0];
 											const duration = measure.duration;
-											assert.isAtMost(duration, loadTimeInSeconds);
+											assert.isAtMost(duration, loadTimeInMilliseconds);
 
 											cy.log(
 												`[PERFORMANCE] Page load duration for ${ description }: ${ duration / 1000 } seconds`

@@ -1,4 +1,4 @@
-name: Cypress Tests on Bluehost VPS
+name: Performance Tests on Bluehost VPS
 
 on:
   workflow_run:
@@ -18,10 +18,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
-          browser: chrome
-          spec: |
-            tests/cypress/integration/lighthouse.spec.js
-            tests/cypress/integration/performance.spec.js
+          spec: tests/cypress/integration/performance.spec.js
         env:
           CYPRESS_baseUrl: ${{ secrets.CYPRESS_BASEURL }}
           CYPRESS_wpUsername: ${{ secrets.CYPRESS_WP_USERNAME }}
@@ -30,4 +27,4 @@ jobs:
       - uses: actions/upload-artifact@v1
         with:
           name: performance-logs
-          path: logs/performance-logs.txt
+          path: logs/cypress.log

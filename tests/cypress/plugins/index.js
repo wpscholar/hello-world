@@ -39,7 +39,7 @@ module.exports = (on, config) => {
 			printLogsToConsole: 'always',
 			outputRoot: config.projectRoot + '/logs/',
 			outputTarget: {
-				'performance-logs.txt': 'txt'
+				'cypress.log': 'txt'
 			}
 		}
 	);

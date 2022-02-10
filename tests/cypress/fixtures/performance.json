@@ -2,11 +2,11 @@
   {
     "url": "/wp-admin/edit.php?post_type=post",
     "description": "post list screen",
-    "loadTimeInSeconds": 2000
+    "duration": 2000
   },
   {
     "url": "/wp-admin/post.php?post=1&action=edit",
     "description": "post edit screen",
-    "loadTimeInSeconds": 3000
+    "duration": 3000
   }
 ]
