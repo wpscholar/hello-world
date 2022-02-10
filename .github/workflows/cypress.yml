@@ -18,7 +18,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
-          spec: tests/cypress/performance.spec.js
+          spec: tests/cypress/integration/performance.spec.js
         env:
           CYPRESS_baseUrl: ${{ secrets.CYPRESS_BASEURL }}
           CYPRESS_wpUsername: ${{ secrets.CYPRESS_WP_USERNAME }}
