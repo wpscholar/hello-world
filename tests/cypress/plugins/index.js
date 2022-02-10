@@ -12,6 +12,8 @@
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
 
+const {lighthouse, pa11y, prepareAudit} = require('cypress-audit');
+
 /**
  * @type {Cypress.PluginConfig}
  */
@@ -20,6 +22,15 @@ module.exports = (on, config) => {
 
 	// `on` is used to hook into various events Cypress emits
 	// `config` is the resolved Cypress config
+
+	on('before:browser:launch', (browser = {}, launchOptions) => {
+		prepareAudit(launchOptions);
+	});
+
+	on('task', {
+		lighthouse: lighthouse(), // calling the function is important
+		pa11y: pa11y(), // calling the function is important
+	});
 
 	require('cypress-terminal-report/src/installLogsPrinter')(
 		on,
