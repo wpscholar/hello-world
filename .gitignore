@@ -1,3 +1,8 @@
-/logs
 /node_modules
+/tests/cypress/downloads
+/tests/cypress/logs
+/tests/cypress/screenshots
+/tests/cypress/videos
 /vendor
+
+cypress.env.json

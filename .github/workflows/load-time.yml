@@ -7,7 +7,7 @@ on:
       - completed
 
 jobs:
-  cypress-run:
+  load-time:
     runs-on: ubuntu-latest
     environment: bluehost-vps
     steps:
@@ -18,13 +18,13 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
-          spec: tests/cypress/integration/performance.spec.js
+          spec: tests/cypress/integration/performance/load-time.spec.js
         env:
-          CYPRESS_baseUrl: ${{ secrets.CYPRESS_BASEURL }}
-          CYPRESS_wpUsername: ${{ secrets.CYPRESS_WP_USERNAME }}
-          CYPRESS_wpPassword: ${{ secrets.CYPRESS_WP_PASSWORD }}
+          CYPRESS_BASE_URL: ${{ secrets.CYPRESS_BASE_URL }}
+          CYPRESS_WP_USERNAME: ${{ secrets.CYPRESS_WP_USERNAME }}
+          CYPRESS_WP_PASSWORD: ${{ secrets.CYPRESS_WP_PASSWORD }}
 
       - uses: actions/upload-artifact@v1
         with:
-          name: performance-logs
-          path: logs/cypress.log
+          name: load-time-logs
+          path: tests/cypress/logs/cypress.log

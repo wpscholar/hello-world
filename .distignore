@@ -3,4 +3,4 @@
 .distignore
 .distinclude
 
-/logs
+/tests

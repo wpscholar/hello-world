@@ -7,7 +7,7 @@ on:
       - completed
 
 jobs:
-  notify:
+  webpagetest:
     runs-on: ubuntu-latest
     steps:
 
@@ -16,7 +16,6 @@ jobs:
         with:
           apiKey: ${{ secrets.WPT_API_KEY }}
           urls: |
-            https://example.com/
-            https://example.com/about
-          label: 'GitHub Action Test'
+            https://test-bluehost-vps.com
+          label: 'test-bluehost-vps.com'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

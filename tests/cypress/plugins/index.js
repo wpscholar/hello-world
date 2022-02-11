@@ -1,17 +1,12 @@
-/// <reference types="cypress" />
-// ***********************************************************
-// This example plugins/index.js can be used to load plugins
-//
-// You can change the location of this file or turn off loading
-// the plugins file with the 'pluginsFile' configuration option.
-//
-// You can read more here:
-// https://on.cypress.io/plugins-guide
-// ***********************************************************
+// <reference types="cypress" />
 
-// This function is called when a project is opened or re-opened (e.g. due to
-// the project's config changing)
+/**
+ * Cypress plugins.
+ *
+ * @link https://on.cypress.io/plugins-guide
+ */
 
+const fs = require('fs');
 const {lighthouse, pa11y, prepareAudit} = require('cypress-audit');
 
 /**
@@ -37,15 +32,21 @@ module.exports = (on, config) => {
 		{
 			printLogsToFile: 'always',
 			printLogsToConsole: 'always',
-			outputRoot: config.projectRoot + '/logs/',
+			outputRoot: `${ config.projectRoot }/tests/cypress/logs/`,
 			outputTarget: {
 				'cypress.log': 'txt'
 			}
 		}
 	);
 
-	if (config.env && config.env.baseUrl) {
-		config.baseUrl = config.env.baseUrl;
+	// Set base URL from environmental variable, if set
+	if (process.env.CYPRESS_BASE_URL) {
+		config.env.BASE_URL = process.env.CYPRESS_BASE_URL;
+	}
+
+	// Allow a base URL set as an environmental variable to override the core option
+	if (config.env && config.env.BASE_URL) {
+		config.baseUrl = config.env.BASE_URL;
 	}
 
 	return config;

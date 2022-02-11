@@ -3,7 +3,7 @@
 describe('WordPress', () => {
 
 	before(() => {
-		cy.login(Cypress.env('wpUsername'), Cypress.env('wpPassword'));
+		cy.login(Cypress.env('WP_USERNAME'), Cypress.env('WP_PASSWORD'));
 	});
 
 	it('measures page load', () => {

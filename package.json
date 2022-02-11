@@ -4,8 +4,11 @@
   "description": "A playground repo for testing code, build processes, etc.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "cypress:run": "cypress run --browser chrome --headless"
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run --browser chrome --headless",
+    "cypress:run:lighthouse": "cypress run --browser chrome --headless --spec 'tests/cypress/integration/performance/lighthouse.spec.js'",
+    "cypress:run:load-time": "cypress run --spec 'tests/cypress/integration/performance/load-time.spec.js'",
+    "test": "npm run cypress:run"
   },
   "repository": {
     "type": "git",

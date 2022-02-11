@@ -7,7 +7,7 @@ on:
       - completed
 
 jobs:
-  cypress-run:
+  lighthouse:
     runs-on: ubuntu-latest
     environment: bluehost-vps
     steps:
@@ -19,13 +19,13 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           browser: chrome
-          spec: tests/cypress/integration/lighthouse.spec.js
+          spec: tests/cypress/integration/performance/lighthouse.spec.js
         env:
-          CYPRESS_baseUrl: ${{ secrets.CYPRESS_BASEURL }}
-          CYPRESS_wpUsername: ${{ secrets.CYPRESS_WP_USERNAME }}
-          CYPRESS_wpPassword: ${{ secrets.CYPRESS_WP_PASSWORD }}
+          CYPRESS_BASE_URL: ${{ secrets.CYPRESS_BASE_URL }}
+          CYPRESS_WP_USERNAME: ${{ secrets.CYPRESS_WP_USERNAME }}
+          CYPRESS_WP_PASSWORD: ${{ secrets.CYPRESS_WP_PASSWORD }}
 
       - uses: actions/upload-artifact@v1
         with:
           name: lighthouse-logs
-          path: logs/cypress.log
+          path: tests/cypress/logs/cypress.log
