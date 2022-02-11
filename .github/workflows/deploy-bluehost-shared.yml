@@ -31,7 +31,7 @@ jobs:
           DEPLOY_KEY: ${{ secrets.SERVER_SSH_PRIVATE_KEY }}
         with:
           flags: '-acvz --delete-after --force'
-          options: '--include-from=.distinclude --exclude-from=.distignore --chmod=D755,F644 --chown=${{ secrets.SERVER_USERNAME }}:${{ secrets.SERVER_USERNAME }}'
+          options: '--include-from=.distinclude --exclude-from=.distignore --chmod=D755,F644'
           ssh_options: '-p ${{ secrets.SERVER_PORT }}'
           src: './'
           dest: '${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }}:${{ secrets.SERVER_PATH }}/wp-content/plugins/${{ steps.workflow.outputs.PACKAGE }}'
