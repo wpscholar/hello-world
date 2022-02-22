@@ -6,8 +6,7 @@
  * @link https://on.cypress.io/plugins-guide
  */
 
-const fs = require('fs');
-const {lighthouse, pa11y, prepareAudit} = require('cypress-audit');
+const {lighthouse, prepareAudit} = require('cypress-audit');
 
 /**
  * @type {Cypress.PluginConfig}
@@ -24,7 +23,6 @@ module.exports = (on, config) => {
 
 	on('task', {
 		lighthouse: lighthouse(), // calling the function is important
-		pa11y: pa11y(), // calling the function is important
 	});
 
 	require('cypress-terminal-report/src/installLogsPrinter')(
