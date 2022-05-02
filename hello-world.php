@@ -11,6 +11,7 @@
  * @wordpress-plugin
  * Plugin Name:       Hello world
  * Plugin URI:
+ * Update URI:        hello-world
  * Description:       The world's most amazing and comprehensive WordPress greeting plugin.
  * Version:           1.0
  * Requires PHP:      5.6
