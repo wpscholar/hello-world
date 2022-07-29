@@ -13,7 +13,7 @@
  * Plugin URI:
  * Update URI:        hello-world
  * Description:       The world's most amazing and comprehensive WordPress greeting plugin.
- * Version:           1.2.6
+ * Version:           1.2.7
  * Requires PHP:      5.6
  * Requires at least: 5.0
  * Author:            Micah Wood
