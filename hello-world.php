@@ -13,7 +13,7 @@
  * Plugin URI:
  * Update URI:        hello-world
  * Description:       The world's most amazing and comprehensive WordPress greeting plugin.
- * Version:           1.2.8
+ * Version:           1.2.9
  * Requires PHP:      5.6
  * Requires at least: 5.0
  * Author:            Micah Wood
@@ -24,4 +24,4 @@
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  */
 
-define( 'HELLO_WORLD_PLUGIN_VERSION', '1.2.8' );
+define( 'HELLO_WORLD_PLUGIN_VERSION', '1.2.9' );
