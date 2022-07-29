@@ -15,6 +15,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Validate version number
+        env:
+          TAGGED_VERSION: ${GITHUB_REF#refs/tags/*}
+        run: |
+          taggedVersion=$TAGGED_VERSION
+          pluginHeaderVersion=`grep "Version:" hello-world.php | grep -Eo "[0-9\.]*"`
+          pluginConstantVersion=`grep "_PLUGIN_VERSION" hello-world.php | grep -Eo "[0-9\.]*"`
+          echo "Tagged version: $taggedVersion"
+          echo "Plugin header version: $pluginHeaderVersion"
+          echo "Plugin constant version: $pluginConstantVersion"
+          [[ "$taggedVersion" == "$pluginHeaderVersion" ]] || exit 1
+          [[ "$taggedVersion" == "$pluginConstantVersion" ]] || exit 1
+
       - name: Setup Workflow Context
         id: workflow
         working-directory: ${{ runner.temp }}
