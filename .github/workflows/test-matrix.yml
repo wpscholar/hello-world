@@ -13,11 +13,11 @@ jobs:
     strategy:
       matrix:
         phpVersion:
-          - 7.4
-          - 8.0
+          - '7.4'
+          - '8.0'
         wpVersion:
-          - 5.9
-          - 6.0
+          - '5.9'
+          - '6.0'
 
     steps:
 
