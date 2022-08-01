@@ -9,6 +9,7 @@ jobs:
   test:
     name: Run Cypress Tests
     runs-on: ubuntu-latest
+
     strategy:
       matrix:
         phpVersion:
@@ -17,6 +18,7 @@ jobs:
         wpVersion:
           - 5.9
           - 6.0
+
     steps:
 
       - name: Checkout
@@ -53,7 +55,12 @@ jobs:
         run: find .
 
       - name: Configure WordPress
-        run: echo '{"core": "WordPress/WordPress#tags/${{ matrix.wpVersion }}","phpVersion": "${{ matrix.phpVersion }}","config":{"WP_DEBUG_DISPLAY":false},"plugins":["${{ steps.workflow.outputs.DIST }}/${{ steps.workflow.outputs.PACKAGE }}"]}' > .wp-env.override.json
+        run: |
+          echo '{"core": "WordPress/WordPress#tags/${{ matrix.wpVersion }}","phpVersion": "${{ matrix.phpVersion }}","config": { "WP_DEBUG_DISPLAY": false },"plugins": [ "${{ steps.workflow.outputs.DIST }}/${{ steps.workflow.outputs.PACKAGE }}" ] }' > .wp-env.override.json
+
+      - name: Configure Cypress
+        run: |
+          echo '{"env": {"baseUrl": "http://localhost:8880","wpVersion": "6.0","phpVersion": "7.4"}}' > cypress.env.json
 
       - name: Install WordPress
         run: npx wp-env start
