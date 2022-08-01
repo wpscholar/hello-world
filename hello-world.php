@@ -24,4 +24,8 @@
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  */
 
+if ( defined( 'HELLO_WORLD_PLUGIN_VERSION' ) ) {
+	exit;
+}
+
 define( 'HELLO_WORLD_PLUGIN_VERSION', '1.2.9' );

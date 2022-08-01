@@ -6,7 +6,7 @@
 
 import 'cypress-audit/commands';
 
-Cypress.Commands.add('login', (username, password) => {
+Cypress.Commands.add('login', () => {
 	cy
 		.getCookies()
 		.then(cookies => {
@@ -18,8 +18,8 @@ Cypress.Commands.add('login', (username, password) => {
 			});
 			if (!hasMatch) {
 				cy.visit('/wp-login.php').wait(1000);
-				cy.get('#user_login').type(username);
-				cy.get('#user_pass').type(`${ password }{enter}`);
+				cy.get('#user_login').type(Cypress.env('wpUsername'));
+				cy.get('#user_pass').type(`${ Cypress.env('wpPassword') }{enter}`);
 			}
 		});
 });

@@ -1,9 +1,11 @@
 {
   "downloadsFolder": "tests/cypress/downloads",
   "env": {
-    "BASE_URL": "https://localhost",
-    "WP_USERNAME": "admin",
-    "WP_PASSWORD": "password"
+    "baseUrl": "http://localhost:8880",
+    "wpUsername": "admin",
+    "wpPassword": "password",
+    "wpVersion": "6.0",
+    "phpVersion": "7.4"
   },
   "fixturesFolder": "tests/cypress/fixtures",
   "integrationFolder": "tests/cypress/integration",
