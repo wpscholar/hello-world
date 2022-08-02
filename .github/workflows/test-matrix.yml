@@ -60,7 +60,7 @@ jobs:
 
       - name: Configure Cypress
         run: |
-          echo '{"env": {"baseUrl": "http://localhost:8880","wpVersion": "${{ matrix.wpVersion }}","phpVersion": "${{ matrix.phpVersion }}"}}' > cypress.env.json
+          echo '{"wpVersion": "${{ matrix.wpVersion }}","phpVersion": "${{ matrix.phpVersion }}"}' > cypress.env.json
 
       - name: Install WordPress
         run: npx wp-env start
