@@ -66,14 +66,16 @@ jobs:
         run: npx wp-env start
 
       - name: Run Cypress Tests
-        run: npm run test:e2e
+        env:
+          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+        run: |
+          npm install
+          npx cypress run --spec=tests/cypress/integration/quick/test.spec.js --record --key ${{ secrets.CYPRESS_RECORD_KEY }}
 
-      - name: Store screenshots of test failures
-        if: ${{ failure() }}
-        uses: actions/upload-artifact@v2
-        with:
-          name: screenshots
-          path: ./tests/cypress/screenshots
+      - name: Show link to Cypress Dashboard
+        if: always()
+        run: |
+          echo "Cypress Dashboard: https://dashboard.cypress.io"
 
       - name: Check if a debug.log file exists
         id: hasErrors
