@@ -1,4 +1,5 @@
 {
+  "projectId": "nsvfte",
   "downloadsFolder": "tests/cypress/downloads",
   "env": {
     "baseUrl": "http://localhost:8880",
