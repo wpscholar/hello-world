@@ -2,7 +2,7 @@ name: Update Project Card Status
 
 on:
   project_card:
-    types: [ moved ]
+    types: [ edited, moved ]
 
 jobs:
   card-moved:
