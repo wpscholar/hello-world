@@ -17,11 +17,12 @@ jobs:
           USER: wpscholar
           PROJECT_NUMBER: 1
         run: |
+          echo PROJECT_ID=$(gh api graphql -f query='query{user(login: "wpscholar"){projectV2(number: 1) {id}}}' --jq .data.user.projectV2.id)
           gh api graphql -f query='
-            query($user, $number){
+            query($user: String!, $number: Int!){
               user(login: $user){
                 projectV2(number: $number) {
-                  id 
+                  id
                   title,
                   fields(first:20) {
                     nodes {
@@ -41,12 +42,15 @@ jobs:
                   }
                 }
               }
-            }' -f user=$USER -F number=$PROJECT_NUMBER > project_data.json
+          }' -f user=$USER -F number=$PROJECT_NUMBER > project_data.json
 
-          echo 'PROJECT_ID='$(jq '.data.organization.projectV2.id' project_data.json) >> $GITHUB_ENV
-          echo 'DATE_FIELD_ID='$(jq '.data.organization.projectV2.fields.nodes[] | select(.name== "Date posted") | .id' project_data.json) >> $GITHUB_ENV
-          echo 'STATUS_FIELD_ID='$(jq '.data.organization.projectV2.fields.nodes[] | select(.name== "Status") | .id' project_data.json) >> $GITHUB_ENV
-          echo 'TODO_OPTION_ID='$(jq '.data.organization.projectV2.fields.nodes[] | select(.name== "Status") | .options[] | select(.name=="Todo") |.id' project_data.json) >> $GITHUB_ENV
+          echo 'PROJECT_ID='$(jq '.data.user.projectV2.id' project_data.json) >> $GITHUB_ENV
+          echo 'ADMIN_STATUS_FIELD_ID='$(jq '.data.organization.projectV2.fields.nodes[] | select(.name== "Admin Status") | .id' project_data.json) >> $GITHUB_ENV
+          echo 'ADMIN_STATUS_IN_PROGRESS_ID='$(jq '.data.organization.projectV2.fields.nodes.$ADMIN_STATUS_FIELD_ID.options[] | select(.name== "In Progress") | .id' project_data.json) >> $GITHUB_ENV
+          
+          echo $PROJECT_ID
+          echo $ADMIN_STATUS_FIELD_ID
+          echo $ADMIN_STATUS_IN_PROGRESS_ID
 
       - uses: actions/upload-artifact@v1
         with:
