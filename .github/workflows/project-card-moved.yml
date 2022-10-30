@@ -1,8 +1,9 @@
 name: Update Project Card Status
 
 on:
-  projects_v2_item:
-    types: [ edited, moved ]
+  repository_dispatch:
+    types:
+      - 'project-card-events'
 
 jobs:
   card-moved:
