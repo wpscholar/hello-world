@@ -49,16 +49,16 @@ jobs:
           }' -f user=$USER -F number=$PROJECT_NUMBER > project_data.json
 
           echo 'PROJECT_ID='$(jq '.data.user.projectV2.id' project_data.json) >> $GITHUB_ENV
-          echo 'WEBHOOK_PROJECT_ID='$(jq '.client_payload.projects_v2_item.project_node_id' ${{ github.event.client_payload }}) >> $GITHUB_ENV
-          echo 'ITEM_ID='$(jq '.client_payload.projects_v2_item.node_id' ${{ github.event.client_payload }}) >> $GITHUB_ENV
+          echo 'WEBHOOK_PROJECT_ID='$(jq '.projects_v2_item.project_node_id' client_payload.json) >> $GITHUB_ENV
+          echo 'ITEM_ID='$(jq '.projects_v2_item.node_id' client_payload.json) >> $GITHUB_ENV
           echo 'ADMIN_STATUS_ID='$(jq '.data.user.projectV2.fields.nodes[] | select(.name == "Admin Status") | .id ' project_data.json)
           echo 'ADMIN_STATUS_IN_PROGRESS_ID='$(jq '.data.user.projectV2.fields.nodes[] | select(.name == "Admin Status") | .options[] | select(.name == "In Progress") | .id ' project_data.json)
           
-          echo $PROJECT_ID
-          echo $WEBHOOK_PROJECT_ID
-          echo $ITEM_ID
-          echo $ADMIN_STATUS_ID
-          echo $ADMIN_STATUS_IN_PROGRESS_ID
+          echo "PROJECT_ID=${{ env.PROJECT_ID }}"
+          echo "WEBHOOK_PROJECT_ID=${{ env.WEBHOOK_PROJECT_ID }}"
+          echo "ITEM_ID=${{ env.ITEM_ID }}"
+          echo "ADMIN_STATUS_ID=${{ env.ADMIN_STATUS_ID }}"
+          echo "ADMIN_STATUS_ID_IN_PROGRESS=${{ env.ADMIN_STATUS_ID_IN_PROGRESS }}"
 
       - name: Update card
         if: env.PROJECT_ID == env.WEBHOOK_PROJECT_ID
