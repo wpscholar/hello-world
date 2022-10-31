@@ -58,15 +58,15 @@ jobs:
           gh api graphql -f query='
             mutation {
               updateProjectV2ItemFieldValue(
-                  input: {
-                    projectId: "${{ env.PROJECT_ID }}"
-                    itemId: "${{ env.ITEM_ID }}"
-                    fieldId: "${{ env.ADMIN_STATUS_ID }}"
-                    value: {
-                      singleSelectOptionId: "${{ env.ADMIN_STATUS_IN_PROGRESS_ID }}"
-                    }
+                input: {
+                  projectId: ${{ env.PROJECT_ID }}
+                  itemId: ${{ env.ITEM_ID }}
+                  fieldId: ${{ env.ADMIN_STATUS_ID }}
+                  value: {
+                    singleSelectOptionId: ${{ env.ADMIN_STATUS_IN_PROGRESS_ID }}
                   }
-                ) {
+                }
+              ) {
                 projectV2Item {
                   id
                 }
