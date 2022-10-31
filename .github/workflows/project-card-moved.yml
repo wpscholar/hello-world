@@ -53,8 +53,8 @@ jobs:
           echo 'PROJECT_ID='$(jq '.data.user.projectV2.id' project_data.json) >> $GITHUB_ENV
           echo 'WEBHOOK_PROJECT_ID='$(jq -r '.projects_v2_item.project_node_id' <<< '${{ toJson( github.event.client_payload ) }}') >> $GITHUB_ENV
           echo 'ITEM_ID='$(jq -r '.projects_v2_item.node_id' <<< '${{ toJson( github.event.client_payload ) }}') >> $GITHUB_ENV
-          echo 'ADMIN_STATUS_ID='$(jq '.data.user.projectV2.fields.nodes[] | select(.name == "Admin Status") | .id ' project_data.json)
-          echo 'ADMIN_STATUS_IN_PROGRESS_ID='$(jq '.data.user.projectV2.fields.nodes[] | select(.name == "Admin Status") | .options[] | select(.name == "In Progress") | .id ' project_data.json)
+          echo 'ADMIN_STATUS_ID='$(jq '.data.user.projectV2.fields.nodes[] | select(.name == "Admin Status") | .id ' project_data.json) >> $GITHUB_ENV
+          echo 'ADMIN_STATUS_IN_PROGRESS_ID='$(jq '.data.user.projectV2.fields.nodes[] | select(.name == "Admin Status") | .options[] | select(.name == "In Progress") | .id ' project_data.json) >> $GITHUB_ENV
           
           echo "PROJECT_ID=${{ env.PROJECT_ID }}"
           echo "WEBHOOK_PROJECT_ID=${{ env.WEBHOOK_PROJECT_ID }}"
