@@ -5,6 +5,9 @@ on:
     types:
       - 'project-card-events'
 
+env:
+  GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
+
 jobs:
   card-moved:
     name: Card Moved
@@ -12,6 +15,7 @@ jobs:
     steps:
 
       - name: Get project data
+        if: env.PROJECT_ID == env.WEBHOOK_PROJECT_ID
         env:
           GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
           USER: wpscholar
@@ -24,7 +28,7 @@ jobs:
                 projectV2(number: $number) {
                   id
                   title,
-                  fields(first:20) {
+                  fields(first:50) {
                     nodes {
                       ... on ProjectV2Field {
                         id
@@ -45,12 +49,35 @@ jobs:
           }' -f user=$USER -F number=$PROJECT_NUMBER > project_data.json
 
           echo 'PROJECT_ID='$(jq '.data.user.projectV2.id' project_data.json) >> $GITHUB_ENV
-          echo 'ADMIN_STATUS_FIELD_ID='$(jq '.data.organization.projectV2.fields.nodes[] | select(.name== "Admin Status") | .id' project_data.json) >> $GITHUB_ENV
-          echo 'ADMIN_STATUS_IN_PROGRESS_ID='$(jq '.data.organization.projectV2.fields.nodes.$ADMIN_STATUS_FIELD_ID.options[] | select(.name== "In Progress") | .id' project_data.json) >> $GITHUB_ENV
+          echo 'WEBHOOK_PROJECT_ID='$(jq '.client_payload.projects_v2_item.project_node_id') >> $GITHUB_ENV
+          echo 'ITEM_ID='$(jq '.client_payload.projects_v2_item.node_id') >> $GITHUB_ENV
+          echo 'ADMIN_STATUS_ID='$(jq '.data.user.projectV2.fields.nodes[] | select(.name == "Admin Status") | .id ' project_data.json)
+          echo 'ADMIN_STATUS_IN_PROGRESS_ID='$(jq '.data.user.projectV2.fields.nodes[] | select(.name == "Admin Status") | .options[] | select(.name == "In Progress") | .id ' project_data.json)
           
           echo $PROJECT_ID
           echo $ADMIN_STATUS_FIELD_ID
           echo $ADMIN_STATUS_IN_PROGRESS_ID
+
+      - name: Update card
+        if: env.PROJECT_ID === env.WEBHOOK_PROJECT_ID
+        run: |
+          gh api graphql -f query='
+            mutation {
+              updateProjectV2ItemFieldValue(
+                  input: {
+                    projectId: "${{ env.PROJECT_ID }}"
+                    itemId: "${{ env.ITEM_ID }}"
+                    fieldId: "${{ env.ADMIN_STATUS_ID }}"
+                    value: {
+                      singleSelectOptionId: "${{ env.ADMIN_STATUS_IN_PROGRESS_ID }}"
+                    }
+                  }
+                ) {
+                projectV2Item {
+                  id
+                }
+              }
+           }'
 
       - uses: actions/upload-artifact@v1
         with:
