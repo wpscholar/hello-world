@@ -60,7 +60,7 @@ jobs:
               updateProjectV2ItemFieldValue(
                 input: {
                   projectId: ${{ env.PROJECT_ID }}
-                  itemId: ${{ env.ITEM_ID }}
+                  itemId: "${{ env.ITEM_ID }}"
                   fieldId: ${{ env.ADMIN_STATUS_ID }}
                   value: {
                     singleSelectOptionId: ${{ env.ADMIN_STATUS_IN_PROGRESS_ID }}
