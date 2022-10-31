@@ -59,7 +59,7 @@ jobs:
           echo $ADMIN_STATUS_IN_PROGRESS_ID
 
       - name: Update card
-        if: env.PROJECT_ID === env.WEBHOOK_PROJECT_ID
+        if: env.PROJECT_ID == env.WEBHOOK_PROJECT_ID
         run: |
           gh api graphql -f query='
             mutation {
