@@ -20,7 +20,7 @@ jobs:
           PROJECT_NUMBER: 1
         run: |
         
-          ${{ github.event.client_payload }}) > client_payload.json
+          echo ${{ toJson( github.event.client_payload ) }} > client_payload.json
           
           gh api graphql -f query='
             query($user: String!, $number: Int!){
