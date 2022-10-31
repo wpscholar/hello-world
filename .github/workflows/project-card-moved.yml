@@ -14,6 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+      - name: Test
+        run: |
+          echo $(jq -r '.projects_v2_item.project_node_id' <<< ${{ github.event.client_payload }})
+
       - name: Get project data
         env:
           USER: wpscholar
