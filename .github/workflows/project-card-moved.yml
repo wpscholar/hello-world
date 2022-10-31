@@ -55,7 +55,9 @@ jobs:
           echo 'ADMIN_STATUS_IN_PROGRESS_ID='$(jq '.data.user.projectV2.fields.nodes[] | select(.name == "Admin Status") | .options[] | select(.name == "In Progress") | .id ' project_data.json)
           
           echo $PROJECT_ID
-          echo $ADMIN_STATUS_FIELD_ID
+          echo $WEBHOOK_PROJECT_ID
+          echo $ITEM_ID
+          echo $ADMIN_STATUS_ID
           echo $ADMIN_STATUS_IN_PROGRESS_ID
 
       - name: Update card
