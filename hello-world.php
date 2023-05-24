@@ -5,7 +5,7 @@
  *
  * @package           HelloWorld
  * @author            Micah Wood
- * @copyright         Copyright 2021 by Micah Wood - All rights reserved.
+ * @copyright         Copyright 2022 by Micah Wood - All rights reserved.
  * @license           GPL2.0-or-later
  *
  * @wordpress-plugin
