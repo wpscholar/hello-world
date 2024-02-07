@@ -1,0 +1,18 @@
+name: Deploy to production
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: wp-forge/secure-rsync-deploy@master
+        with:
+          USER: ${{ vars.SERVER_USER }}
+          HOST: ${{ vars.SERVER_HOST }}
+          REMOTE_PATH: ${{ vars.SERVER_PATH }}
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
