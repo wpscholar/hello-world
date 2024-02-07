@@ -1,0 +1,35 @@
+
+
+name: Run PHPUnit Tests
+on:
+  push:
+    branches:
+      - main
+jobs:
+  phpunit:
+    runs-on: ubuntu-latest
+    steps:
+    
+      - name: Setup workflow context
+        id: workflow
+        env:
+          REPO: ${{ github.repository }}
+        run: |
+          echo "PLUGIN_NAME=${REPO##*/}" >> $GITHUB_OUTPUT
+    
+      - uses: actions/checkout@v4
+    
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+    
+      - name: Install dependencies
+        run: composer install
+    
+      - name: Install WordPress
+        run: npx -y @wordpress/env start
+    
+      - name: Run PHPUnit
+        run: npx @wordpress/env run tests-cli --env-cwd=wp-content/plugins/${{ steps.workflow.outputs.PLUGIN_NAME }} phpunit
+
+```
