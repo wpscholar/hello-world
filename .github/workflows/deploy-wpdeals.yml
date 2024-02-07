@@ -11,7 +11,7 @@ jobs:
     environment: wpdeals
     steps:
       - uses: actions/checkout@v4
-      - uses: wp-forge/secure-rsync-deploy@master
+      - uses: wp-forge/secure-rsync-deploy@main
         with:
           USER: ${{ vars.SERVER_USER }}
           HOST: ${{ vars.SERVER_HOST }}
