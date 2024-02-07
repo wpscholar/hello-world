@@ -13,6 +13,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: wp-forge/secure-rsync-deploy@main
         with:
+          LOCAL_PATH: '/tests/'
           USER: ${{ vars.SERVER_USER }}
           HOST: ${{ vars.SERVER_HOST }}
           REMOTE_PATH: ${{ vars.SERVER_PATH }}
