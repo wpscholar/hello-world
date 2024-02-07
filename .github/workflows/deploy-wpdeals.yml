@@ -14,7 +14,7 @@ jobs:
     environment: wpdeals
     steps:
       - uses: actions/checkout@v4
-      - uses: wp-forge/secure-rsync-deploy@v1
+      - uses: wp-forge/secure-rsync-deploy@v1.0.0
         with:
           LOCAL_PATH: '/tests/'
           USER: ${{ vars.SERVER_USER }}
