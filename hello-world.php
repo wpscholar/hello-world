@@ -29,3 +29,4 @@ if ( defined( 'HELLO_WORLD_PLUGIN_VERSION' ) ) {
 }
 
 define( 'HELLO_WORLD_PLUGIN_VERSION', '1.2.9' );
+// Extra comment
