@@ -33,7 +33,7 @@ jobs:
       id: create_milestone
       run: |
         #!/bin/bash
-        curl -X POST -f \
+        curl -X POST \
           -H "User-Agent: GitHub-API-Request" \
           -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
           -H "Accept: application/vnd.github.v3+json" \
