@@ -41,3 +41,6 @@ jobs:
           echo "Error: Failed to create a milestone."
           exit 1
         fi
+
+        # Optionally, output the response for debugging
+        echo "Milestone created successfully: $response"
