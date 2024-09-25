@@ -16,7 +16,7 @@ jobs:
       id: set_milestone
       run: |
         # Set the date format for the milestone title and due date
-        DATE=$(date -u -d 'next week '+%B %d, %Y')  # Format: September 25, 2024
+        DATE=$(date -u -d 'next week' '+%B %d, %Y')  # Format: September 25, 2024
         DATE_ISO8601=$(date -u -d 'next week' '+%Y-%m-%dT%H:%M:%SZ')  # ISO8601 format
         DESCRIPTION=$(cat <<EOF
         The release is scheduled for $DATE, and PRs should be submitted and made mergeable by EOD $DATE. This means they should have tests passing and merge conflicts resolved. The description for the PR must include details of what is included in the PR and how to test it, and preferably new tests supporting the update.
