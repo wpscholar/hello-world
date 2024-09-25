@@ -25,6 +25,10 @@ jobs:
         EOF
         )
 
+        echo "Date: $DATE"
+        echo "ISO8601 Date: $DATE_ISO8601"
+        echo "Description: $DESCRIPTION"
+
     - name: Create a new milestone
       id: create_milestone
       run: |
@@ -36,8 +40,16 @@ jobs:
           https://api.github.com/repos/${{ github.repository }}/milestones \
           -d "{\"title\":\"$DATE Release\", \"description\":\"$DESCRIPTION\", \"due_on\":\"$DATE_ISO8601\", \"state\":\"open\"}")
 
-        # Check the exit status of the curl request
-        if [ $? -ne 0 ]; then
+        HTTP_STATUS=$(tail -n1 <<< "$RESPONSE")
+        RESPONSE_BODY=$(cat response_body.txt)
+
+        # If HTTP status code is not 2xx, print the response and fail the step
+        if [[ "$HTTP_STATUS" -ge 400 ]]; then
           echo "Error: Failed to create a milestone."
+          echo "HTTP Status: $HTTP_STATUS"
+          echo "Response body: $RESPONSE_BODY"
           exit 1
         fi
+
+        echo "Milestone created successfully."
+        echo "Response body: $RESPONSE_BODY"
