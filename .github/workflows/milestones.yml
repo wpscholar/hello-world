@@ -16,7 +16,7 @@ jobs:
       id: set_milestone
       run: |
         # Set the date format for the milestone title and due date
-        DATE=$(date '+%B %d, %Y')  # Format: September 25, 2024
+        DATE=$(date -u -d 'next week '+%B %d, %Y')  # Format: September 25, 2024
         DATE_ISO8601=$(date -u -d 'next week' '+%Y-%m-%dT%H:%M:%SZ')  # ISO8601 format
         DESCRIPTION=$(cat <<EOF
         The release is scheduled for $DATE, and PRs should be submitted and made mergeable by EOD $DATE. This means they should have tests passing and merge conflicts resolved. The description for the PR must include details of what is included in the PR and how to test it, and preferably new tests supporting the update.
@@ -33,23 +33,9 @@ jobs:
       id: create_milestone
       run: |
         #!/bin/bash
-        RESPONSE=$(curl -X POST -f \
+        curl -X POST -f \
           -H "User-Agent: GitHub-API-Request" \
           -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
           -H "Accept: application/vnd.github.v3+json" \
           https://api.github.com/repos/${{ github.repository }}/milestones \
-          -d "{\"title\":\"$DATE Release\", \"description\":\"$DESCRIPTION\", \"due_on\":\"$DATE_ISO8601\", \"state\":\"open\"}")
-
-        HTTP_STATUS=$(tail -n1 <<< "$RESPONSE")
-        RESPONSE_BODY=$(cat response_body.txt)
-
-        # If HTTP status code is not 2xx, print the response and fail the step
-        if [[ "$HTTP_STATUS" -ge 400 ]]; then
-          echo "Error: Failed to create a milestone."
-          echo "HTTP Status: $HTTP_STATUS"
-          echo "Response body: $RESPONSE_BODY"
-          exit 1
-        fi
-
-        echo "Milestone created successfully."
-        echo "Response body: $RESPONSE_BODY"
+          -d "{\"title\":\"$DATE Release\", \"description\":\"$DESCRIPTION\", \"due_on\":\"$DATE_ISO8601\", \"state\":\"open\"}"
