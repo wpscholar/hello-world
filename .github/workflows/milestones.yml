@@ -29,7 +29,7 @@ jobs:
       id: create_milestone
       run: |
         #!/bin/bash
-        RESPONSE=$(curl -X POST \
+        RESPONSE=$(curl -X POST -f \
           -H "User-Agent: GitHub-API-Request" \
           -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
           -H "Accept: application/vnd.github.v3+json" \
@@ -41,6 +41,3 @@ jobs:
           echo "Error: Failed to create a milestone."
           exit 1
         fi
-
-        # Optionally, output the response for debugging
-        echo "Milestone created successfully: $response"
