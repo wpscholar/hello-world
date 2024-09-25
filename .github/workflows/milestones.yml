@@ -7,7 +7,7 @@ on:
     - cron: '0 0 * * MON'
 
 jobs:
-  create_milestones:
+  create-milestone:
     runs-on: ubuntu-latest
     
     steps:
