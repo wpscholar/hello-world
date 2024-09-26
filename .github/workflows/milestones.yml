@@ -2,6 +2,11 @@ name: Create Weekly Milestone
 
 on:
   workflow_dispatch:
+  input:
+    due_date:
+      description: "Provide the due date for the milestone (format: YYYY-MM-DD)"
+      required: false
+      default: ""
   schedule:
     - cron: '0 12 * * 3' # Every Wednesday at noon UTC
 
@@ -17,6 +22,20 @@ jobs:
       - name: Create Milestone
         run: |
           #!/bin/bash
+
+          # Explicitly set the timezone to UTC
+          export TZ=UTC
+
+          # Check if workflow was triggered by manual input (workflow_dispatch) or by cron
+          if [ -n "${{ github.event.inputs.due_date }}" ]; then
+            # Use the provided date from workflow_dispatch input
+            DUE_DATE="${{ github.event.inputs.due_date }}"
+            echo "Manual input provided. Using input date: $DUE_DATE"
+          else
+            # No manual input, use the default: 2 weeks from now
+            DUE_DATE=$(date -u -d '2 weeks' '+%Y-%m-%d')
+            echo "No manual input. Using default date two weeks from now: $DUE_DATE"
+          fi
           
           # Set the date format for the milestone title and due date
           DATE=$(date -u -d '2 weeks' '+%B %d, %Y')  # Human-readable date
