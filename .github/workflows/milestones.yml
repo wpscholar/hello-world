@@ -26,10 +26,12 @@ jobs:
           # Explicitly set the timezone to UTC
           export TZ=UTC
 
+          echo "Debug: Manually Entered Due Date: ${{ github.event.inputs.due_date }}"
+
           # Get the input date from workflow_dispatch (if provided) or use default logic
-          if [ -n "${INPUT_DUE_DATE}" ]; then
+          if [ -n "${{ github.event.inputs.due_date }}" ]; then
             # Use the provided date from workflow_dispatch input
-            DUE_DATE="${INPUT_DUE_DATE}"
+            DUE_DATE="${{ github.event.inputs.due_date }}"
             echo "Manual input provided. Using input date: $DUE_DATE"
           else
             # No manual input, use the default: 2 weeks from now
