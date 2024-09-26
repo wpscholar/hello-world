@@ -3,7 +3,7 @@ name: Create Weekly Milestone
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * MON'
+    - cron: '0 12 * * 3' # Every Wednesday at noon UTC
 
 permissions:
   issues: write
