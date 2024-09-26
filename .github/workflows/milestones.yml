@@ -2,11 +2,11 @@ name: Create Weekly Milestone
 
 on:
   workflow_dispatch:
-  input:
-    due_date:
-      description: "Provide the due date for the milestone (format: YYYY-MM-DD)"
-      required: false
-      default: ""
+    inputs:
+      due_date:
+        description: "Provide the due date for the milestone (format: YYYY-MM-DD)"
+        required: false
+        default: ""
   schedule:
     - cron: '0 12 * * 3' # Every Wednesday at noon UTC
 
