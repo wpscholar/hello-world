@@ -26,15 +26,15 @@ jobs:
           # Explicitly set the timezone to UTC
           export TZ=UTC
 
-          # Check if workflow was triggered by manual input (workflow_dispatch) or by cron
-          if [ -n "${{ github.event.inputs.due_date }}" ]; then
+          # Get the input date from workflow_dispatch (if provided) or use default logic
+          if [ -n "${INPUT_DUE_DATE}" ]; then
             # Use the provided date from workflow_dispatch input
-            DUE_DATE="${{ github.event.inputs.due_date }}"
+            DUE_DATE="${INPUT_DUE_DATE}"
             echo "Manual input provided. Using input date: $DUE_DATE"
           else
             # No manual input, use the default: 2 weeks from now
             DUE_DATE=$(date -u -d '2 weeks' '+%Y-%m-%d')
-            echo "No manual input. Using default date two weeks from now: $DUE_DATE"
+            echo "No manual input. Using default date 2 weeks from now: $DUE_DATE"
           fi
           
           # Set the date format for the milestone title and due date
