@@ -28,4 +28,4 @@ if ( defined( 'HELLO_WORLD_PLUGIN_VERSION' ) ) {
 	exit;
 }
 
-define( 'HELLO_WORLD_PLUGIN_VERSION', '1.2.9' );
+define( 'HELLO_WORLD_PLUGIN_VERSION', '1.3.0' );
