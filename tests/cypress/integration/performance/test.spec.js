@@ -29,13 +29,13 @@ describe('WordPress', () => {
 										.its('performance')
 										.then((performance) => {
 											performance.measure('pageLoad', 'start-loading', 'end-loading');
-											const measure = performance.getEntriesByName('pageLoad')[1];
+											const measure = performance.getEntriesByName('pageLoad')[0];
 											const duration = measure.duration;
-											assert.isAtLeast(duration, loadTimeInMilliseconds);
+											assert.isAtMost(duration, loadTimeInMilliseconds);
 
 											cy.log(
 												`[PERFORMANCE] Page load duration for ${ description }: ${ duration / 1000 } seconds`
-											)
+											);
 										});
 								});
 
